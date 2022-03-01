@@ -17,10 +17,17 @@ button, input[type="button"], input[type="submit"] {
     padding: 5px 10px;
     font-family: 'VT323', monospace;
     font-size: 20px;
+    
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 button:active, input[type="button"]:active, input[type="submit"]:active {
     background-color: var(--accent-color);
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 input:focus,
@@ -46,6 +53,10 @@ input[type="text"], input[type="password"] {
     font-size: 20px;
     padding: 5px 10px;
     border: none;
+    
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
 }
 
 /* Progress Bar */
