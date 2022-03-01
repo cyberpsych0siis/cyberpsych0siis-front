@@ -8,7 +8,7 @@ window.onload = () => {
 
     c.height = window.innerHeight;
     c.width = window.innerWidth;
-
+    context.imageSmoothingEnabled = false;
     // console.log(context);
     // context.fillStyle = "green";
     // context.fillRect(0, 0, c.clientWidth, c.clientHeight);
