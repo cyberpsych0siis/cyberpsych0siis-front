@@ -50,11 +50,13 @@ function generateDot(x = null, y = null) {
         },
         xMode: ["sin", "cos"][parseInt(Math.random() * 2)],
         yMode: ["sin", "cos"][parseInt(Math.random() * 2)],
+        xSinMod: (Math.random() * 100) + 1000,
+        ySinMod: (Math.random() * 100) + 1000,
         getX: function(ts) {
-            return (Math[this.xMode](this.seed + ts / 200) * this.r) + ((this.x / 100) * window.innerWidth);
+            return (Math[this.xMode](this.seed + ts / this.xSinMod) * this.r) + ((this.x / 100) * window.innerWidth);
         },
         getY: function(ts) {
-            return (Math[this.yMode](this.seed + ts / 1000) * this.r) + ((this.y / 100) * window.innerHeight);
+            return (Math[this.yMode](this.seed + ts / this.ySinMod) * this.r) + ((this.y / 100) * window.innerHeight);
             // return this.y;
         },
         getColor: function(ts) {
@@ -72,11 +74,18 @@ function genSeed() {
     return parseInt(Math.random() * 90);
 }
 
+let lastRun = 0;
+
 function draw(ts) {
-    clear();
-    logic(ts);
-    connectDots(ts);
-    // drawDots(ts);
+    const fraction = 1000 / 60;
+    if (ts > lastRun + fraction) {
+        lastRun = ts;
+        
+        clear();
+        logic(ts);
+        connectDots(ts);
+        // drawDots(ts);
+    }
 
     requestAnimationFrame(draw);
 }
