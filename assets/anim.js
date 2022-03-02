@@ -63,7 +63,8 @@ function generateDot(x = null, y = null) {
             const alpha = (this.getRadius(ts) / this.r);
             // console.log(alpha);
             // debugger;
-            return "rgba(255,0,0," + alpha + ")";
+            // return "rgba(255,0,0," + alpha + ")";
+            return "rgb(" + (alpha * 255) + ",0,0)";
         },
         seed: genSeed(),
         connections: []
@@ -75,18 +76,26 @@ function genSeed() {
 }
 
 let lastRun = 0;
+let frameCount = 0;
+
+let dotsOnScreen = 0;
+let lastDotDrawn = 0;
 
 function draw(ts) {
     const fraction = 1000 / 60;
     if (ts > lastRun + fraction) {
         lastRun = ts;
+        frameCount++;
         
         clear();
         logic(ts);
-        connectDots(ts);
+        // if (ts > 1000) {
+            connectDots(ts);
+        // } */
         // drawDots(ts);
     }
-
+    // drawFPS(ts);
+    
     requestAnimationFrame(draw);
 }
 
@@ -114,13 +123,19 @@ function connectDots(ts) {
                 context.beginPath();
                 context.moveTo(currentDot.getX(ts), currentDot.getY(ts));
                 context.lineTo(destination.getX(ts), destination.getY(ts));
+                context.lineWidth = 1;
                 context.stroke();
                 destination.connections.push(dots.indexOf(currentDot));
             }
         }
-
-        // console.log(filteredDots);
     }
+}
+
+function drawFPS(ts) {
+    const delta = (lastRun - ts) / 1000;
+    context.fillStyle = getCSSVariable("--foreground-color");
+    context.font = "24px VT323";
+    context.fillText("Frames: " + (1 / delta), 50, 50);
 }
 
 function logic(ts) {
@@ -138,6 +153,10 @@ function createGradientForConnection(ts, curr, dest) {
 
 function clear() {
     // console.log(context);
-    context.fillStyle = "black";
+    context.fillStyle = getCSSVariable("--background-color");
     context.fillRect(0, 0, c.clientWidth, c.clientHeight);
+}
+
+function getCSSVariable(v) {
+    return getComputedStyle(document.body).getPropertyValue(v).trim();
 }
