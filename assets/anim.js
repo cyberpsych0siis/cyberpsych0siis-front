@@ -18,11 +18,6 @@ window.onload = () => {
         c.width = window.innerWidth;
     });
 
-    /*c.addEventListener("click", e => {
-        console.log(e.clientX / window.innerWidth);
-        dots.push(generateDot(parseInt(window.innerWidth / e.clientX * 100), parseInt(e.clientY)));
-    })*/
-
     for (let i = 0; i < 20; i++) {
         dots.push(generateDot());
     }
@@ -42,7 +37,7 @@ function generateDot(x = null, y = null) {
         r: parseInt(
             (Math.random() * 10) + 2
         ),
-        getRadius: function(ts) {
+        getRadius: function (ts) {
             // if (ts < 10000) return (ts / 1000) * this.r;
 
             // return this.r;
@@ -52,14 +47,14 @@ function generateDot(x = null, y = null) {
         yMode: ["sin", "cos"][parseInt(Math.random() * 2)],
         xSinMod: (Math.random() * 100) + 1000,
         ySinMod: (Math.random() * 100) + 1000,
-        getX: function(ts) {
+        getX: function (ts) {
             return (Math[this.xMode](this.seed + ts / this.xSinMod) * this.r) + ((this.x / 100) * window.innerWidth);
         },
-        getY: function(ts) {
+        getY: function (ts) {
             return (Math[this.yMode](this.seed + ts / this.ySinMod) * this.r) + ((this.y / 100) * window.innerHeight);
             // return this.y;
         },
-        getColor: function(ts) {
+        getColor: function (ts) {
             const alpha = (this.getRadius(ts) / this.r);
             // console.log(alpha);
             // debugger;
@@ -86,16 +81,16 @@ function draw(ts) {
     if (ts > lastRun + fraction) {
         lastRun = ts;
         frameCount++;
-        
+
         clear();
         logic(ts);
         // if (ts > 1000) {
-            connectDots(ts);
+        connectDots(ts);
         // } */
         // drawDots(ts);
     }
     // drawFPS(ts);
-    
+
     requestAnimationFrame(draw);
 }
 
@@ -113,9 +108,13 @@ function connectDots(ts) {
         let filteredDots = dots.filter(e => {
             return e !== currentDot;
         }).sort((a, b) => {
-            if (a.getRadius(ts) > b.getRadius(ts)) return 1;
-            if (a.getRadius(ts) < b.getRadius(ts)) return 0;
+            if (a.getRadius(ts) < b.getRadius(ts)) return 1;
+            if (a.getRadius(ts) > b.getRadius(ts)) return 0;
         });
+
+        for (let f of filteredDots) {
+            f.connections = [];
+        }
 
         for (const destination of filteredDots) {
             if (destination.connections.indexOf(currentDot) == -1) {
@@ -127,6 +126,7 @@ function connectDots(ts) {
                 context.stroke();
                 destination.connections.push(dots.indexOf(currentDot));
             }
+
         }
     }
 }
@@ -139,7 +139,25 @@ function drawFPS(ts) {
 }
 
 function logic(ts) {
-// for ()
+/*     for (let d of dots) {
+        let rad = d.getRadius(ts) * 100;
+        if (d.y < 0 /* && (rad > 0 && rad < 10) *) {
+            //object is off screen
+            let dotIndex = dots.indexOf(d);
+            dots.splice(dotIndex, 1);
+            console.log(dots);
+            // break;
+        } else {
+            d.y -= 0.1;
+        }
+
+    } */
+}
+
+function spawnNewRandomDot() {
+    const y = 110;
+    const x = parseInt(Math.random() * 100);
+    dots.push(generateDot(x, y));
 }
 
 function createGradientForConnection(ts, curr, dest) {

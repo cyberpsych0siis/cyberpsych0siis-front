@@ -6,11 +6,19 @@
     <link rel="stylesheet" href="assets/cyberpsycho.css">
     <link rel="stylesheet" href="assets/glitch.css">
     <link rel="stylesheet" href="assets/page.css">
+    <link rel="stylesheet" href="assets/micromodal.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <script src="https://unpkg.com/micromodal/dist/micromodal.min.js"></script>
+    <script>
+        window.onload = function() {
+            MicroModal.init();
+        }
+    </script>
 </head>
 
 <body style="background-color: black">
-<!--     <div id="example" class="center">
+    <!--     <div id="example" class="center">
         <h1 class="glitch" data-text="cyberpsych0siis">cyberpsych0siis</h1>
         <p>
             <form action="/login" method="GET">
@@ -26,20 +34,45 @@
         <!-- <meter min="0" low="10" optimum="50" high="90" max="100"></meter> -->
         <progress value="50" max="100"></progress>
         <progress max="100"></progress>
+
+        <button data-micromodal-trigger="modal-1">Open Modal</button>
     </p>
     <p class="warning">
-        Hello
+        This is a warning
     </p>
 
     <p class="error">
-        Hello
-    </p>
-    
-    <p class="error-fill">
-        Hello
+        This is an error
     </p>
 
-    
+    <p class="error-fill">
+        This is a serious error
+    </p>
+
+    <!-- TEST MODAL -->
+    <div class="modal micromodal-slide" id="modal-1" aria-hidden="true">
+        <div class="modal__overlay" tabindex="-1" data-micromodal-close>
+          <div class="modal__container" role="dialog" aria-modal="true" aria-labelledby="modal-1-title">
+            <header class="modal__header">
+              <h2 class="modal__title" id="modal-1-title">
+                Micromodal
+              </h2>
+              <button class="modal__close" aria-label="Close modal" data-micromodal-close></button>
+            </header>
+            <main class="modal__content" id="modal-1-content">
+              <p>
+                Try hitting the <code>tab</code> key and notice how the focus stays within the modal itself. Also, <code>esc</code> to close modal.
+              </p>
+            </main>
+            <footer class="modal__footer">
+              <button class="modal__btn modal__btn-primary">Continue</button>
+              <button class="modal__btn" data-micromodal-close aria-label="Close this dialog window">Close</button>
+            </footer>
+          </div>
+        </div>
+      </div>
+
+
 </body>
 
 </html>
