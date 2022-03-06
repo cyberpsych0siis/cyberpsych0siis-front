@@ -4,7 +4,7 @@ const CONNECTED_RADIUS = 450;
 
 let c, context;
 
-let circle = true;
+let circle = false;
 
 function circleOn() {
     circle = true;
