@@ -1,6 +1,18 @@
 const dots = [];
 
+const CONNECTED_RADIUS = 450;
+
 let c, context;
+
+let circle = true;
+
+function circleOn() {
+    circle = true;
+}
+
+function circleOff() {
+    circle = false;
+}
 
 window.onload = () => {
     c = document.getElementById("bganim");
@@ -9,9 +21,6 @@ window.onload = () => {
     c.height = window.innerHeight;
     c.width = window.innerWidth;
     context.imageSmoothingEnabled = false;
-    // console.log(context);
-    // context.fillStyle = "green";
-    // context.fillRect(0, 0, c.clientWidth, c.clientHeight);
 
     window.addEventListener("resize", (e) => {
         c.height = window.innerHeight;
@@ -19,15 +28,16 @@ window.onload = () => {
     });
 
     for (let i = 0; i < 20; i++) {
-        dots.push(generateDot());
+        dots.push(generateDot(i));
     }
 
     requestAnimationFrame(draw);
     console.log(dots);
 }
 
-function generateDot(x = null, y = null) {
+function generateDot(i, x = null, y = null) {
     return {
+        index: i,
         x: x != null ? x : parseInt(
             (Math.random() * 100)
         ),
@@ -38,28 +48,29 @@ function generateDot(x = null, y = null) {
             (Math.random() * 10) + 2
         ),
         getRadius: function (ts) {
-            // if (ts < 10000) return (ts / 1000) * this.r;
-
-            // return this.r;
             return Math.abs(Math.sin(this.seed + ts / 1000) * this.r);
         },
         xMode: ["sin", "cos"][parseInt(Math.random() * 2)],
         yMode: ["sin", "cos"][parseInt(Math.random() * 2)],
         xSinMod: (Math.random() * 100) + 1000,
         ySinMod: (Math.random() * 100) + 1000,
-        getX: function (ts) {
-            return (Math[this.xMode](this.seed + ts / this.xSinMod) * this.r) + ((this.x / 100) * window.innerWidth);
+        getX: function (ts, circled = false) {
+            return circled
+                ? (window.innerWidth / 2) + Math.sin((ts / 4000) + this.index/(20 - 10) * 4) * CONNECTED_RADIUS
+                : (Math[this.xMode](this.seed + ts / this.xSinMod) * this.r) + ((this.x / 100) * window.innerWidth);
         },
-        getY: function (ts) {
-            return (Math[this.yMode](this.seed + ts / this.ySinMod) * this.r) + ((this.y / 100) * window.innerHeight);
-            // return this.y;
+        getY: function (ts, circled = false) {
+            const wigglePos = (Math[this.yMode](this.seed + ts / this.ySinMod) * this.r) + ((this.y / 100) * window.innerHeight);
+            return circled
+                ? (window.innerHeight / 2) +Math.cos((ts / 4000) + this.index/(20 - 10) * 4) * CONNECTED_RADIUS
+                : wigglePos 
+                ;
         },
         getColor: function (ts) {
             const alpha = (this.getRadius(ts) / this.r);
-            // console.log(alpha);
-            // debugger;
-            // return "rgba(255,0,0," + alpha + ")";
-            return "rgb(" + (alpha * 255) + ",0,0)";
+            return circle ? 
+            "blue"
+            :"rgb(" + (alpha * 255) + ",0,0)";
         },
         seed: genSeed(),
         connections: []
@@ -86,8 +97,7 @@ function draw(ts) {
         logic(ts);
         // if (ts > 1000) {
         connectDots(ts);
-        // } */
-        // drawDots(ts);
+        drawDots(ts);
     }
     // drawFPS(ts);
 
@@ -98,7 +108,7 @@ function drawDots(ts) {
     for (let dot of dots) {
         context.fillStyle = dot.getColor(ts);
         context.beginPath();
-        context.arc(dot.getX(ts), dot.getY(ts), dot.getRadius(ts), 0, 2 * Math.PI);
+        context.arc(dot.getX(ts, circle), dot.getY(ts, circle), dot.getRadius(ts), 0, 2 * Math.PI);
         context.fill();
     }
 }
@@ -118,11 +128,11 @@ function connectDots(ts) {
 
         for (const destination of filteredDots) {
             if (destination.connections.indexOf(currentDot) == -1) {
-                context.strokeStyle = createGradientForConnection(ts, currentDot, destination);
+                context.strokeStyle = circle ? destination.getColor(ts) : createGradientForConnection(ts, currentDot, destination);
                 context.beginPath();
-                context.moveTo(currentDot.getX(ts), currentDot.getY(ts));
-                context.lineTo(destination.getX(ts), destination.getY(ts));
-                context.lineWidth = 1;
+                context.moveTo(currentDot.getX(ts, circle), currentDot.getY(ts, circle));
+                context.lineTo(destination.getX(ts, circle), destination.getY(ts, circle));
+                context.lineWidth = 5;
                 context.stroke();
                 destination.connections.push(dots.indexOf(currentDot));
             }
@@ -139,19 +149,19 @@ function drawFPS(ts) {
 }
 
 function logic(ts) {
-/*     for (let d of dots) {
-        let rad = d.getRadius(ts) * 100;
-        if (d.y < 0 /* && (rad > 0 && rad < 10) *) {
-            //object is off screen
-            let dotIndex = dots.indexOf(d);
-            dots.splice(dotIndex, 1);
-            console.log(dots);
-            // break;
-        } else {
-            d.y -= 0.1;
-        }
-
-    } */
+    /*     for (let d of dots) {
+            let rad = d.getRadius(ts) * 100;
+            if (d.y < 0 /* && (rad > 0 && rad < 10) *) {
+                //object is off screen
+                let dotIndex = dots.indexOf(d);
+                dots.splice(dotIndex, 1);
+                console.log(dots);
+                // break;
+            } else {
+                d.y -= 0.1;
+            }
+    
+        } */
 }
 
 function spawnNewRandomDot() {
@@ -177,4 +187,28 @@ function clear() {
 
 function getCSSVariable(v) {
     return getComputedStyle(document.body).getPropertyValue(v).trim();
+}
+
+function drawPathWithCircle() {  
+
+    const middleX = window.innerWidth / 2;
+    const middleY = window.innerHeight / 2;
+    const radius = 500;
+
+    context.fillStyle = 'green';
+    let moved = false;
+    context.beginPath();
+    for (let i = 0; i < 20; i++) {
+        // for (let i = 0; i < 10; i++) {
+        // console.log((Math.sin(i / 10)) + "/" + Math.sin(i / 10));
+        // if (!moved) {
+            // moved = true;
+
+            // context.moveTo(Math.sin(i/20), Math.sin(i/20));
+        // } else {
+            // context.lineTo(Math.sin(i/20), Math.sin(i/20));
+        // }
+        // context.fillRect(middleX + , middleY + Math.cos(i/(20 - 10) * 4) * radius, 10, 10);
+    }
+    context.stroke();
 }
