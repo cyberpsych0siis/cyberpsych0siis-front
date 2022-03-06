@@ -132,7 +132,7 @@ function connectDots(ts) {
                 context.beginPath();
                 context.moveTo(currentDot.getX(ts, circle), currentDot.getY(ts, circle));
                 context.lineTo(destination.getX(ts, circle), destination.getY(ts, circle));
-                context.lineWidth = 5;
+                context.lineWidth = circle ? 5 : 1;
                 context.stroke();
                 destination.connections.push(dots.indexOf(currentDot));
             }
