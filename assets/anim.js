@@ -38,6 +38,8 @@ window.onload = () => {
         dots.push(generateDot(i));
     }
 
+    hljs.highlightAll();
+
     requestAnimationFrame(loop);
     console.log(dots);
 }

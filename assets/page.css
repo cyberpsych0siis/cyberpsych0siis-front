@@ -1,4 +1,5 @@
 @import url(iphone.css);
+
 * {
     padding: 0;
 }
@@ -52,11 +53,12 @@ body {
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
     /* padding: 100px 100px 100px 100px; */
-    
+
     /* box-shadow: 0px 0px 20px 27px white; */
     /* -webkit-box-shadow: 1px 10px 20px 27px rgba(0,0,0,0.75); */
     /* -moz-box-shadow: 1px 10px 20px 27px rgba(0,0,0,0.75); */
 }
+
 .card .glitch {
     font-size: 4em;
 }
@@ -78,6 +80,12 @@ a {
     /* top: 100vh !important; */
 }
 
+.content-big {
+    width: 80vw !important;
+    left: 10vw !important;
+    right: 10vw !important;
+}
+
 .content {
     position: relative;
     width: 50vw;
@@ -89,6 +97,8 @@ a {
     color: var(--foreground-color);
     backdrop-filter: blur(5px);
     -webkit-backdrop-filter: blur(5px);
+
+    margin-bottom: 2em;
 }
 
 /* .content {
@@ -132,10 +142,14 @@ section {
     display: flex;
 }
 
+sub {
+    font-size: 12px;
+}
 
-.flex-container > * {
+.flex-container>* {
     width: 50%;
     padding: 2vw;
+    text-align:justify;
 }
 
 .flex-container .left {
@@ -143,7 +157,7 @@ section {
     max-width: -webkit-fill-available;
 }
 
-.flex-container .right > * {
+.flex-container .right>* {
     max-width: -webkit-fill-available;
     /* max-width: 50%; */
 }
@@ -152,8 +166,9 @@ section {
     order: 1;
 }
 
-span {
-    font-size: 1.5em;
+code {
+    backdrop-filter: blur(10px);
+    background: rgba(255, 255, 255, 0.7) !important;
 }
 
 .small {
@@ -194,22 +209,23 @@ li::before {
     margin-inline-start: 1.5em;
 }
 
-#technologies li p  {
+#technologies li p {
     /* font-size: 1em; */
     margin-block-start: 0.5em;
     margin-block-end: 0.5em;
 }
 
-li.small::before{
+li.small::before {
     width: 1.5em !important;
     height: 1.5em !important;
     background-size: 1.5em !important;
 }
 
-li[data-icon='docker']:hover {
+li[data-icon='docker']:hover:not(.nohover) {
     background-color: rgb(74, 148, 230, 1);
 }
-li[data-icon='docker'] {
+
+li[data-icon='docker']:not(.nohover) {
     background-color: rgb(74, 148, 230, 0.5);
 }
 
@@ -217,11 +233,11 @@ li[data-icon='docker']::before {
     background-image: url('techs/docker.svg');
 }
 
-li[data-icon='typescript']:hover {
+li[data-icon='typescript']:hover:not(.nohover) {
     background-color: rgba(53, 120, 197, 1);
 }
 
-li[data-icon='typescript'] {
+li[data-icon='typescript']:not(.nohover)  {
     background-color: rgba(53, 120, 197, 0.5);
 }
 
@@ -229,11 +245,11 @@ li[data-icon='typescript']::before {
     background-image: url('techs/typescript.png');
 }
 
-li[data-icon='swift']:hover {
+li[data-icon='swift']:hover:not(.nohover) {
     background-color: rgba(232, 72, 53, 1);
 }
 
-li[data-icon='swift'] {
+li[data-icon='swift']:not(.nohover)  {
     background-color: rgba(232, 72, 53, 0.5);
 }
 
@@ -241,11 +257,11 @@ li[data-icon='swift']::before {
     background-image: url('techs/swift.svg');
 }
 
-li[data-icon='swiftui']:hover {
+li[data-icon='swiftui']:hover:not(.nohover) {
     background-color: rgba(33, 67, 203, 1);
 }
 
-li[data-icon='swiftui'] {
+li[data-icon='swiftui']:not(.nohover)  {
     background-color: rgba(33, 67, 203, 0.5);
 }
 
@@ -253,11 +269,11 @@ li[data-icon='swiftui']::before {
     background-image: url('techs/swiftui.png');
 }
 
-li[data-icon='sqlite']:hover {
+li[data-icon='sqlite']:hover:not(.nohover) {
     background-color: rgba(77, 146, 207, 1);
 }
 
-li[data-icon='sqlite'] {
+li[data-icon='sqlite']:not(.nohover)  {
     background-color: rgba(77, 146, 207, 0.5);
 }
 
@@ -265,11 +281,11 @@ li[data-icon='sqlite']::before {
     background-image: url('techs/sqlite.png');
 }
 
-li[data-icon='nodejs']:hover {
+li[data-icon='nodejs']:hover:not(.nohover) {
     background-color: rgba(133, 177, 107, 1);
 }
 
-li[data-icon='nodejs'] {
+li[data-icon='nodejs']:not(.nohover) {
     background-color: rgba(133, 177, 107, 0.5);
 }
 
@@ -277,22 +293,23 @@ li[data-icon='nodejs']::before {
     background-image: url('techs/nodejs.svg');
 }
 
-li[data-icon='mysql']:hover {
+li[data-icon='mysql']:hover:not(.nohover) {
     background-color: rgba(33, 82, 105, 1);
 }
 
-li[data-icon='mysql'] {
+li[data-icon='mysql']:not(.nohover) {
     background-color: rgba(33, 82, 105, 0.5);
 }
+
 li[data-icon='mysql']::before {
     background-image: url('techs/mysql.svg');
 }
 
-li[data-icon="php"]:hover {
+li[data-icon="php"]:hover:not(.nohover) {
     background-color: rgba(121, 124, 176, 1);
 }
 
-li[data-icon="php"] {
+li[data-icon="php"]:not(.nohover)  {
     background-color: rgba(121, 124, 176, 0.5);
 }
 
@@ -300,11 +317,11 @@ li[data-icon='php']::before {
     background-image: url('techs/php.svg');
 }
 
-li[data-icon='java']:hover {
+li[data-icon='java']:hover:not(.nohover) {
     background-color: rgba(212, 57, 49, 1);
 }
 
-li[data-icon='java'] {
+li[data-icon='java']:not(.nohover)  {
     background-color: rgba(212, 57, 49, 0.5);
 }
 
@@ -312,37 +329,40 @@ li[data-icon='java']::before {
     background-image: url('techs/java.svg');
 }
 
-li[data-icon='javascript']:hover {
+li[data-icon='javascript']:hover:not(.nohover) {
     background-color: rgb(213, 186, 75, 1);
     /* color: black; */
 }
 
-li[data-icon='javascript'] {
+li[data-icon='javascript']:not(.nohover)  {
     background-color: rgb(213, 186, 75, 0.5);
     /* color: black; */
 }
+
 li[data-icon='javascript']::before {
     background-image: url('techs/javascript.svg');
 }
 
-li[data-icon='archlinux']:hover {
+li[data-icon='archlinux']:hover:not(.nohover) {
     background-color: rgb(69, 145, 204, 1);
 }
 
-li[data-icon='archlinux'] {
+li[data-icon='archlinux']:not(.nohover)  {
     background-color: rgb(69, 145, 204, 0.5);
 }
+
 li[data-icon='archlinux']::before {
     background-image: url('techs/arch.png');
 }
 
-li[data-icon='arduino']:hover {
+li[data-icon='arduino']:hover:not(.nohover) {
     background-color: rgb(71, 154, 161, 1);
 }
 
-li[data-icon='arduino'] {
+li[data-icon='arduino']:not(.nohover)  {
     background-color: rgb(71, 154, 161, 0.5);
 }
+
 li[data-icon='arduino']::before {
     background-image: url('techs/arduino.svg');
 }
@@ -351,25 +371,32 @@ li[data-icon='github']::before {
     background-image: url('img/github.svg');
 }
 
-li[data-icon='html5']:hover {
+li[data-icon='html5']:hover:not(.nohover) {
     background-color: rgba(209, 87, 54, 1);
 }
 
-li[data-icon='html5'] {
+li[data-icon='html5']:not(.nohover)  {
     background-color: rgba(209, 87, 54, 0.5);
 }
+
 li[data-icon='html5']::before {
     background-image: url('techs/html5.png');
 }
 
-li[data-icon='css3']:hover {
+li[data-icon='css3']:hover:not(.nohover) {
     background-color: rgba(48, 76, 219, 1);
 }
-li[data-icon='css3'] {
+
+li[data-icon='css3']:not(.nohover)  {
     background-color: rgba(48, 76, 219, 0.5);
 }
+
 li[data-icon='css3']::before {
     background-image: url('techs/css3.svg');
+}
+
+.nohover {
+    padding: 2vw;
 }
 
 .hide-on-mobile {
@@ -389,7 +416,7 @@ video {
 }
 
 .grid-parent {
-    padding-top: 2em;
+    /* padding-top: 2em; */
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(3, 1fr);
@@ -397,7 +424,7 @@ video {
     grid-row-gap: 0px;
 }
 
-.grid-parent > * {
+.grid-parent>* {
     padding: 10px;
     /* border-radius: 10px; */
 }

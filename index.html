@@ -14,6 +14,9 @@
     <link rel="stylesheet" href="assets/iphone.css">
     <link rel="stylesheet" href="assets/page.css">
 
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
+
     <script src="assets/anim.js"></script>
 </head>
 
@@ -22,11 +25,11 @@
         <canvas id="bganim" class="hue-rotate"></canvas>
         <div class="card">
 
-            <h1 class="glitch hue-rotate" data-text="cyberpsych0si.is">cyberpsych0si.is</h1>
+            <h1 class="glitch hue-rotate" data-text="rillo5000.com">rillo5000.com</h1>
             <a href="#aboutme">About Me</a>
             <a href="#technologies">Technologies</a>
             <a href="#projects">Projects</a>
-            <a href="#services">Services</a>
+            <a href="#dj">DJ PRiSMFLUX</a>
             <p>
                 <small onclick="hideOverlay()">Hide Overlay</small>
             </p>
@@ -54,11 +57,14 @@
         </section>
     </div>
 
-    <div class="content nobg">
+    <div class="content">
         <section id="technologies">
             <h1 class="hue-rotate">Technologies</h1>
         </section>
-        <section class="nopad">
+    </div>
+
+    <div class="content">
+        <section class="nopad" id="technologies">
             <div class="grid-parent">
 
                 <!-- <ul> -->
@@ -142,152 +148,359 @@
 
 
     <div class="content">
-
-
         <section id="projects">
             <h1 class="hue-rotate">Projects</h1>
-            <p>Here I list the projects I've done privately with the technologies that they use.</p>
-            <h2>
-                Banana Messenger
-            </h2>
-            <div class="flex-container">
-                <div class="left">
+        </section>
+    </div>
+
+    <div class="content content-big">
+        <section class="nopad" id="projects">
+
+            <!-- <p>Here I list the projects I've done privately with the technologies that they use.</p> -->
+            <ul>
+
+                <li data-icon="swift" class="nohover">
+                    <span>
+                        Banana Messenger
+                    </span>
+                    <div class="flex-container">
+                        <div class="left">
+
+                            <p>
+                                This OpenSource Project contains two seperate projects operating in Client/Server mode.
+                                On the
+                                Client-side it uses a SwiftUI iOS-App running on iOS 15.1. It is planned to use RSA
+                                Encryption
+                                while also using JWTs for authentication.
+                            </p>
+
+                            <p>
+                                On The Serverside you have a SQLite database which is controlled by a expressJS REST-API
+                                Server
+                                with a strong focus on federation. It should be possible to run a private messaging
+                                platform on
+                                even the weakest piece of equipment.
+                            </p>
+                        </div>
+                        <div class="right">
+                            <img loading="lazy" width="50%" src="assets/img/bmessage-crop.jpg"></img>
+                            <!-- <img width="128px" loading="lazy" src="assets/img/bmessage.png"></img> -->
+                            <!-- <div class="show-on-mobile"> -->
+                            <ul>
+                                <li class="small" data-icon="github"><a
+                                        href="https://github.com/cyberpsych0siis/banana-messenger">Client</a></li>
+                                <li class="small" data-icon="github"><a
+                                        href="https://github.com/cyberpsych0siis/banana-msg-server">Server</a></li>
+                            </ul>
+
+                            <p>
+                                Please take a look at why a federated solution to Instant-Messaging is so important in
+                                the
+                                European Union:
+                            </p>
+                            <p>
+                                <a href="https://www.patrick-breyer.de/en/posts/messaging-and-chat-control/">Chat
+                                    Control - The
+                                    End of the Privacy of Digital Correspondence
+                                </a>
+                            </p>
+                        </div>
+                    </div>
+                </li>
+
+                <li data-icon="typescript" class="nohover">
+                    <span class="big">
+                        Schrottimon Web
+                    </span>
+                    <div class="flex-container">
+                        <div class="right">
+                            <p>A JavaScript Canvas Experiment. It uses JSON maps created with Tiled and tilesets in PNG
+                                format
+                                and uses webpack for
+                                packaging/delivery to browser.
+                                It is written in TypeScript and is easily extendable</p>
+                            <div class="hide-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/testRPG">Client/Server</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="left">
+                            <img class="left" loading="lazy" src="assets/img/schrottimon-web.png"></img>
+
+                            <!--                         <video controls autoplay loop width="180">
+                            <source loading="lazy" src="assets/img/schrottimon.mp4" type="video/mp4" />
+                        </video> -->
+                            <div class="show-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/testRPG">Client/Server</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </li>
+
+                <li data-icon="java" class="nohover">
 
                     <span>
-                        This iOS App implements a secure, federated messaging solution. Sending and Receiving of
-                        messaging
-                        works. The companion iOS App works fundamentally. Sending and receiving also works here. Server
-                        Backend is developed with a strong focus on API-first so that implementation of new Clients is
-                        as easy as possible. Encryption is not yet possible (but planned!). The Keys never leave the
-                        device and the client should be as easy as possible.
+                        Schrottimon Java
                     </span>
-                </div>
-                <div class="right">
-                    <img class="right" width="128px" loading="lazy" src="assets/img/bmessage.png"></img>
-                    <!-- <div class="show-on-mobile"> -->
-                    <ul>
-                        <li class="small" data-icon="github"><a
-                                href="https://github.com/cyberpsych0siis/banana-messenger">Client</a></li>
-                        <li class="small" data-icon="github"><a
-                                href="https://github.com/cyberpsych0siis/banana-msg-server">Server</a></li>
-                    </ul>
-                    <!-- </div> -->
-                </div>
-            </div>
+                    <div class="flex-container">
+                        <div class="left">
+                            <p>Port of the Schrottimon TypeScript-Engine to Java. Uses Official TMX-Tilemap Library and
+                                SocketIO. Sadly it's not compatible with Web-Version
+                                for Server/Client Communication</p>
+                            <p>
+                                Features include:
+                            <ul>
+                                <li>Sprinting</li>
+                                <li>Lightmaps</li>
+                            </ul>
+                            </p>
+                            <div class="hide-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/schrottimon-java">Client</a>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/schrottimon-server">Server</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
 
-            <h2>
-                Schrottimon Web
-            </h2>
-            <div class="flex-container">
-                <div class="right">
-                    <span>This Game was a try to make a multiplayer pokemon like engine in the browser, playable on
-                        browser and
-                        phones. It uses JSON maps created with Tiled and tilesets in PNG format and uses webpack for
-                        packaging/delivery to browser.
-                        It is written in TypeScript and is easily extendable</span>
-                    <div class="hide-on-mobile">
-                        <ul>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/testRPG">Client/Server</a>
-                            </li>
-                        </ul>
+                            <img src="assets/img/schrottimon-java.png" loading="lazy" />
+                            <div class="show-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/schrottimon-java">Client</a>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/schrottimon-server">Server</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="left">
-                    <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
-                    <video class="hide-on-mobile" controls autoplay loop width="360">
-                        <!-- <source src="assets/img/schrottimon.mov"> -->
-                        <source loading="lazy" src="assets/img/schrottimon.mp4" type="video/mp4">
-                    </video>
-                    <img class="show-on-mobile" width="128px"
-                        src="https://raw.githubusercontent.com/thallosaurus/testRPG/main/assets/icon_512.png"
-                        loading="lazy" />
-                    <div class="show-on-mobile">
-                        <ul>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/testRPG">Client/Server</a>
-                            </li>
-                        </ul>
+                </li>
+
+                <li data-icon="javascript" class="nohover">
+                    <span>
+                        Happybytes
+                    </span>
+                    <div class="flex-container">
+                        <div class="right">
+                            <p>
+                                A no-dependency solution to quickly convert bytes to decimal and binary SI-Units. Runs
+                                in a
+                                Browser Environment and in NodeJS-Environment.
+                            </p>
+                            <p>License: MIT</p>
+                            <div class="hide-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/happybytes">Package</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="left">
+                            <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
+                            <pre><code class="language-js">
+function hb(size = 0, useMiB = false) {
+    if (typeof size !== "number") throw new Error("Invalid size");
+                       
+    const unit = [
+        ["B", "KiB", "MiB", "GiB", "TiB", "PiB", "EiB", "ZiB", "YiB"],
+        ["B", "kB", "MB", "GB", "TB", "PB", "EB", "ZB", "YB"]
+    ][useMiB ? 0 : 1];
+                       
+    const base = useMiB ? 1024 : 1000;
+    let c = 0;
+    do {
+        size /= base;
+        c++;
+        if (size < base || c >= unit.length - 1) {
+            break;
+        }
+    } while (size > base);
+    
+    return String(Math.floor(Math.round((size * 100))) / 100 + unit[c]);
+}
+</code></pre>
+                            <div class="show-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/json-explorer/">Client (Source)</a>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/json-explorer/releases/tag/v0.0.1">Version
+                                            0.0.1</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <h2>
-                Schrottimon Java
-            </h2>
-            <div class="flex-container">
-                <div class="left">
-                    <span>Port of the Schrottimon TypeScript-Engine to Java. Uses Official TMX-Tilemap Library and
-                        SocketIO. Sadly is not compatible with Web-Version
-                        for Server/Client Communication</span>
-                    <div class="hide-on-mobile">
-                        <ul>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/schrottimon-java">Client</a>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/schrottimon-server">Server</a>
-                            </li>
-                        </ul>
+                </li>
+                <li data-icon="javascript" class="nohover">
+
+                    <span>
+                        JSON-Explorer
+                    </span>
+                    <div class="flex-container">
+                        <div class="left">
+                            <p>
+                                I once had to teach an intern at work what recursion is and came up with this tool. It's
+                                small,
+                                embeddable and has no web dependencies.
+                            </p>
+                            <div class="hide-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/json-explorer/">Client (Source)</a>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/json-explorer/releases/tag/v0.0.1">Version
+                                            0.0.1</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
+                            <img src="assets/img/json-explorer.png" loading="lazy" />
+                            <div class="show-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/json-explorer/">Client (Source)</a>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/json-explorer/releases/tag/v0.0.1">Version
+                                            0.0.1</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="right">
-                    <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
-                    <video class="hide-on-mobile" controls autoplay loop width="360">
-                        <!-- <source src="assets/img/schrottimon.mov"> -->
-                        <source loading="lazy" src="assets/img/schrottimon-java.mp4" type="video/mp4">
-                    </video>
-                    <img class="show-on-mobile" width="128px" src="assets/img/schrottimon-java.png" loading="lazy" />
-                    <div class="show-on-mobile">
-                        <ul>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/schrottimon-java">Client</a>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/schrottimon-server">Server</a>
-                            </li>
-                        </ul>
+                </li>
+                <li data-icon="javascript" class="nohover">
+                    <span class="name">
+                        Never gonna obfuscate
+                    </span>
+                    <div class="flex-container">
+                        <div class="right">
+                            <p>
+                                curiosity kills the cat
+                            </p>
+                            <p>License: MIT</p>
+                            <div class="hide-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://gist.githubusercontent.com/thallosaurus/81f73f5770b4ea86a30a500abe2db52b/raw/7fc9ae55770f04cbc8d055d8d24bb7d818627b71/lolzer.js">Gist</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="left">
+                            <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
+                            <pre><code class="language-js">
+[]["filter"]["constructor"]((false+'')[1]+(false+'')[2]+(!false+'')[3]+(typeof(+[]))[5]+(+(+!+[]+(!+[]+[])[!+[]+!+[]+!+[]]+[+!+[]]+[+[]]+[+[]]+[+[]])+"")[6]+(({})["__proto__"].constructor+"")[15]+"\'"+(((NaN+[Infinity])[10])["toUpperCase"])()+(true+[]["flat"])[10]+(undefined+"")[0]+(NaN+[]["flat"])[11]+([]["entries"]()+"")[3]+(undefined+"")[0]+(false+"")[3]+(true+"")[0]+(NaN+[]["flat"])[11]+(false+[0]+String)[20]+(true+[]["flat"])[10]+(true+"")[0]+(NaN+[]["flat"])[11]+(true+"")[1]+([false]+undefined)[10]+([]["flat"]+"")[3]+(+(20))["to"+String["name"]](21)+(true+"")[1]+(true+[]["flat"])[10]+(false+'')[2]+(false+'')[2]+(true+"")[3]+(undefined+"")[2]+"\'"+(([].propertyIsEnumerable)+"")[30]+";")();([]["filter"]["constructor"]("return location")())[(+(101))["to"+String["name"]](21)[1]+(true+"")[1]+(true+"")[3]+(false+"")[0]]=([]["filter"]["constructor"]("return this"))()["atob"]((!true+'')[1]+(((+(101))["to"+String["name"]](21)[1])["toUpperCase"])()+([]+RegExp)[9]+(+[]+'')+([]["flat"]+"")[3]+'H'+(true+Function("return Date")()())[30]+((((+[])-~!false)*3)+'')+(((false+"")[2])["toUpperCase"])()+(NaN+[Infinity])[10]+((((+[])+(3**2)))+'')+((((+[])+(3**1)))+'')+(undefined+"")[2]+((+!+[])+(!+[]+!+[]))+([]["flat"]+"")[3]+(undefined+"")[0]+(true+"")[3]+"W"+((((+[])+(3**2)))+'')+((~![]*-1)+'')+(undefined+"")[2]+(((+(101))["to"+String["name"]](21)[1])["toUpperCase"])()+"V"+([false]+undefined)[10]+((+(35))["to"+String["name"]](36)["toUpperCase"])()+(+[]+String)[10]+((0.2*(5**3)/5)+'')+([]["entries"]()+"")[3]+([]["entries"]()+"")[2]+'20vd2'+(+[]+Function)[10]+(+[])+(((NaN+[Infinity])[10]["toUpperCase"])()+(!+[]+!+[])+(false+[0]+String)[20]+"/"+(undefined+"")[2]+([]["entries"]()+"")[3]+(+!+[])+(+(20))["to"+String["name"]](21)+(NaN+Object()["to"+String["name"]]["call"]())[11]+((+(101))["to"+String["name"]](34)[1]["toUpperCase"])()+([]["flat"]+"")[3]+(0+'')+(undefined+"")[2]+(+(35))["to"+String["name"]](36)+(false+"")[2]+"XZ"+(+!+[])+(+(101))["to"+String["name"]](21)[1]+([]["entries"]()+"")[3]+(NaN+Object()["to"+String["name"]]["call"]())[11]+'Q'+("")["fontcolor"]()[11]+("")["fontcolor"]()[11]));
+</code></pre>
+                            <div class="show-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://gist.githubusercontent.com/thallosaurus/81f73f5770b4ea86a30a500abe2db52b/raw/7fc9ae55770f04cbc8d055d8d24bb7d818627b71/lolzer.js">Gist</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-            </div>
-            <h2>
-                DockerVM
-            </h2>
-            <div class="flex-container">
-                <div class="right">
-                    <span>This Game was a try to make a multiplayer pokemon like engine in the browser, playable on
-                        browser and
-                        phones. It uses Tiled-TMX maps and tilesets and uses webpack for packaging/delivery to browser.
-                        It is written in TypeScript and is easily extendable</span>
-                    <div class="hide-on-mobile">
-                        <ul>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/schrottimon-java">Client</a>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/schrottimon-server">Server</a>
-                            </li>
-                        </ul>
+                </li>
+
+                <li data-icon="javascript" class="nohover">
+                    <span class="title">
+                        Rillos CPU-Emulator
+                    </span>
+                    <div class="flex-container">
+                        <div class="left">
+                            <p>
+                                I made this one in a couple of days. I tried to arrange the opcodes logically (see docs/
+                                folder)
+                            </p>
+                            <div class="hide-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/emu2">Client
+                                            (Source)</a>
+                                    </li>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/emu2/raw/main/docs/OPCODES.xlsx">Opcode
+                                            Documentation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="right">
+                            <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
+                            <img src="assets/img/rillocpu.png" loading="lazy" />
+                            <div class="show-on-mobile">
+                                <ul>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/emu2">Runtime</a>
+                                    </li>
+                                    <li class="small" data-icon="github"><a
+                                            href="https://github.com/thallosaurus/emu2/raw/main/docs/OPCODES.xlsx">Opcode
+                                            Documentation</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="left">
-                    <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
-                    <video class="hide-on-mobile" controls autoplay width="360">
-                        <!-- <source src="assets/img/schrottimon.mov"> -->
-                        <source loading="lazy" src="assets/img/schrottimon.mp4" type="video/mp4">
-                    </video>
-                    <img class="show-on-mobile" width="128px"
-                        src="https://raw.githubusercontent.com/thallosaurus/testRPG/main/assets/icon_512.png"
-                        loading="lazy" />
-                    <div class="show-on-mobile">
-                        <ul>
-                            <li class="small" data-icon="github"><a
-                                    href="https://github.com/thallosaurus/testRPG">Client/Server</a>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
+            </ul>
+        </section>
+    </div>
+    <div class="content">
+        <section id="dj">
+            <h1 class="hue-rotate">DJ PRiSMFLUX</h1>
+            <p>When I am not working you might spot me behind some turntables in the area. I also DJ for a collective
+                called DiROL and I play Hardtechno, Schranz and fast Techno 160bpm+ and I do this for 3 years now</p>
+
+            <p>
+                I also produce my own tracks. You find them on my <a
+                    href="https://soundcloud.com/prismflux">Soundcloud</a> and you can buy my latest EP on Bandcamp
+            </p>
+        </section>
+    </div>
+
+    <div class="content">
+        <section class="nopad" id="egodeath">
+                <!-- <img width="300px" src="assets/img/egodeath.jpg"> -->
+                <iframe width="100%" height="300" scrolling="no" frameborder="no" allow="autoplay" src="https://w.soundcloud.com/player/?url=https%3A//api.soundcloud.com/tracks/1171868581&color=%23ff5500&auto_play=false&hide_related=false&show_comments=true&show_user=true&show_reposts=false&show_teaser=true&visual=true"></iframe><div style="font-size: 10px; color: #cccccc;line-break: anywhere;word-break: normal;overflow: hidden;white-space: nowrap;text-overflow: ellipsis; font-family: Interstate,Lucida Grande,Lucida Sans Unicode,Lucida Sans,Garuda,Verdana,Tahoma,sans-serif;font-weight: 100;"><a href="https://soundcloud.com/prismflux" title="PRiSMFLUX" target="_blank" style="color: #cccccc; text-decoration: none;">PRiSMFLUX</a> · <a href="https://soundcloud.com/prismflux/ego-death" title="Ego Death" target="_blank" style="color: #cccccc; text-decoration: none;">Ego Death</a></div>
             </div>
         </section>
-        <section id="services">
-            <h1 class="hue-rotate">Services</h1>
-            <p>To selected friends I offer infrastructure they can use to realise their projects. Coming soon</p>
+    </div>
+
+    <div class="content">
+        <section class="nopad" id="mixcloud">
+            <iframe width="100%" height="120" src="https://www.mixcloud.com/widget/iframe/?hide_cover=1&feed=%2Fdjprismflux%2Fbunkersession%2F" frameborder="0" ></iframe>
+        </section>
+    </div>
+
+    <div class="content">
+        <section>
+            <h1 class="hue-rotate">Any questions?</h1>
+            <p>
+                Send me a message on Instagram: @djprismflux
+            </p>
+        </section>
+    </div>
+
+    <div class="content">
+        <section id="dj">
+            <div style="text-align: center">
+                (c) 2022 - Philipp Gaßner
+            </div>
         </section>
     </div>
 </body>
