@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 :root {
-    --background-color: black;
-    --foreground-color: white;
+    --background-color: rgba(0,0,0,0.5);
+    --foreground-color: rgba(255,255,255,1);
     --accent-color: red;
     --shadow-color: white;
 

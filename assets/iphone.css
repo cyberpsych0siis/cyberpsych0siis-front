@@ -1,0 +1,36 @@
+@media only screen 
+and (min-device-width : 375px) 
+and (max-device-width : 812px)
+{
+/* and (-webkit-device-pixel-ratio : 3)  */
+     /* Hier dein CSS einifügen */
+
+     .grid-parent {
+        grid-template-columns: repeat(2, 1fr) !important;
+        grid-template-rows: repeat(2, 1fr) !important;
+     }
+
+     .content {
+         display: block;
+         width: 100vw !important;
+         margin: 0 !important;
+         left: 0 !important;
+         right: 0 !important;
+         
+         /* margin-left: 1em; */
+         /* margin-right: 1em; */
+         /* margin-right: 30px !important; */
+     }
+
+     .card .glitch {
+        font-size: 2em !important;
+    }
+
+    .hide-on-mobile {
+        display: none !important;
+    }
+
+    .show-on-mobile {
+        display: block !important;
+    }
+}

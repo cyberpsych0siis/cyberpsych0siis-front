@@ -1,7 +1,7 @@
         .glitch {
             position: relative;
             color: white;
-            font-size: 4em;
+
             letter-spacing: .1em;
             animation: glitch-skew 0.1s infinite linear alternate-reverse;
         }

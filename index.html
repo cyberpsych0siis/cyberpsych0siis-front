@@ -3,12 +3,15 @@
 
 <head>
     <title>Cyberpsych0siis</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+    <meta name="theme-color" content="#000000" media="(prefers-color-scheme: dark)">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
     </style>
     <link rel="stylesheet" href="assets/cyberpsycho.css">
     <link rel="stylesheet" href="assets/glitch.css">
+    <link rel="stylesheet" href="assets/iphone.css">
     <link rel="stylesheet" href="assets/page.css">
 
     <script src="assets/anim.js"></script>
@@ -16,19 +19,276 @@
 
 <body>
     <div id="example" class="center">
-        <canvas id="bganim"></canvas>
+        <canvas id="bganim" class="hue-rotate"></canvas>
         <div class="card">
 
-            <h1 class="glitch" data-text="cyberpsych0siis">cyberpsych0siis</h1>
+            <h1 class="glitch hue-rotate" data-text="cyberpsych0si.is">cyberpsych0si.is</h1>
+            <a href="#aboutme">About Me</a>
+            <a href="#technologies">Technologies</a>
+            <a href="#projects">Projects</a>
+            <a href="#services">Services</a>
             <p>
-                <form action="/login" method="GET">
-                    <input type="submit" value="Login">
-                </form>
-            </p>
-            <p>
-                Coming soon...
+                <small onclick="hideOverlay()">Hide Overlay</small>
             </p>
         </div>
+
+    </div>
+
+    <div class="content">
+        <section id="aboutme">
+
+            <h1 class="hue-rotate">About me</h1>
+            <p>My name is Philipp Gaßner and I live in Weiden in der Oberpalz. I am currently <span>23 years
+                    old</span> and I was technically doing tech stuff since I was 7. Since then I was fascinated by
+                computers and was always curious of how they worked. I could never make thought of how they even did
+                something simple like basic math. This curiosity never really faded and so, I have set my goal to
+                learn as much about computers as I can.</p>
+            <p>With such curiosity I have worked with several technologies just to understand how they work and how
+                I can use them to solve problems in Informationprocessing as also how I can make computers and
+                everything that makes a beep do whatever I want.</p>
+            <p>I like fast hard Techno Music and everything that makes weird sounds, danceable or not. You can follow my
+                DJ Profile on Instagram: @djprismflux. Also be sure to checkout the Instagram page of our collective:
+                @dirol_collective</p>
+
+            <p>I am also a fun person to hangout with I've heard :D<sub>[Citation needed]</sub></p>
+        </section>
+    </div>
+
+    <div class="content nobg">
+        <section id="technologies">
+            <h1 class="hue-rotate">Technologies</h1>
+        </section>
+        <section class="nopad">
+            <div class="grid-parent">
+
+                <!-- <ul> -->
+                <li data-icon="docker">
+                    <span class="title">Docker</span>
+                    <p>Since: 2021</p>
+                    <p>Familiarity: 2.5/3</p>
+                </li>
+                <li data-icon="nodejs" style="float: right">
+                    <span class="title">NodeJS</span>
+                    <p>Since: 2018</p>
+                    <p>Familiarity: 2.5/3</p>
+                    <p>
+                        <a href="http://npmjs.com">NPM</a>
+                    </p>
+                </li>
+                <li data-icon="typescript">
+                    <span class="title">TypeScript</span>
+                    <p>Since: 2020</p>
+                    <p>Familiarity: 1.2/3</p>
+                </li>
+                <li data-icon="swift">
+                    <span class="title">Swift</span>
+                    <p>Since: 2022</p>
+                    <p>Familiarity: 1/3</p>
+                </li>
+                <li data-icon="swiftui">
+                    <span class="title">SwiftUI</span>
+                    <p>Since: 2022</p>
+                    <p>Familiarity: 1/3</p>
+                </li>
+                <li data-icon="sqlite">
+                    <span class="title">SQLite</span>
+                    <p>Since: 2020</p>
+                    <p>Familiarity: 2/3</p>
+                </li>
+                <li data-icon="mysql">
+                    <span>MySQL</span>
+                    <p>Since: 2019</p>
+                    <p>Familiarity: 2/3</p>
+                </li>
+                <li data-icon="html5">
+                    <span class="title">HTML5</span>
+                    <p>Since: 2016</p>
+                    <p>Familiarity: 3/3</p>
+                </li>
+                <li data-icon="css3">
+                    <span class="title">CSS3</span>
+                    <p>Since: 2016</p>
+                    <p>Familiarity: 3/3</p>
+                </li>
+                <li data-icon="php">
+                    <span class="title">PHP</span>
+                    <p>Since: 2019</p>
+                    <p>Familiarity: 2.5/3</p>
+                </li>
+                <li data-icon="java">
+                    <span class="title">Java</span>
+                    <p>Since: 2017</p>
+                    <p>Familiarity: 2/3</p>
+                </li>
+                <li data-icon="javascript">
+                    <span class="title">JavaScript</span>
+                    <p>Since: 2017</p>
+                    <p>Familiarity: 3/3</p>
+                </li>
+                <li data-icon="archlinux">
+                    <span>Arch Linux (btw)</span>
+                    <p>Since: 2019</p>
+                    <p>Familiarity: 2/3</p>
+                </li>
+                <li data-icon="arduino">
+                    <span>Arduino</span>
+                    <p>Since: 2020</p>
+                    <p>Familiarity: 1/3</p>
+                </li>
+                <!-- </ul> -->
+            </div>
+        </section>
+    </div>
+
+
+    <div class="content">
+
+
+        <section id="projects">
+            <h1 class="hue-rotate">Projects</h1>
+            <p>Here I list the projects I've done privately with the technologies that they use.</p>
+            <h2>
+                Banana Messenger
+            </h2>
+            <div class="flex-container">
+                <div class="left">
+
+                    <span>
+                        This iOS App implements a secure, federated messaging solution. Sending and Receiving of
+                        messaging
+                        works. The companion iOS App works fundamentally. Sending and receiving also works here. Server
+                        Backend is developed with a strong focus on API-first so that implementation of new Clients is
+                        as easy as possible. Encryption is not yet possible (but planned!). The Keys never leave the
+                        device and the client should be as easy as possible.
+                    </span>
+                </div>
+                <div class="right">
+                    <img class="right" width="128px" loading="lazy" src="assets/img/bmessage.png"></img>
+                    <!-- <div class="show-on-mobile"> -->
+                    <ul>
+                        <li class="small" data-icon="github"><a
+                                href="https://github.com/cyberpsych0siis/banana-messenger">Client</a></li>
+                        <li class="small" data-icon="github"><a
+                                href="https://github.com/cyberpsych0siis/banana-msg-server">Server</a></li>
+                    </ul>
+                    <!-- </div> -->
+                </div>
+            </div>
+
+            <h2>
+                Schrottimon Web
+            </h2>
+            <div class="flex-container">
+                <div class="right">
+                    <span>This Game was a try to make a multiplayer pokemon like engine in the browser, playable on
+                        browser and
+                        phones. It uses JSON maps created with Tiled and tilesets in PNG format and uses webpack for
+                        packaging/delivery to browser.
+                        It is written in TypeScript and is easily extendable</span>
+                    <div class="hide-on-mobile">
+                        <ul>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/testRPG">Client/Server</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="left">
+                    <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
+                    <video class="hide-on-mobile" controls autoplay loop width="360">
+                        <!-- <source src="assets/img/schrottimon.mov"> -->
+                        <source loading="lazy" src="assets/img/schrottimon.mp4" type="video/mp4">
+                    </video>
+                    <img class="show-on-mobile" width="128px"
+                        src="https://raw.githubusercontent.com/thallosaurus/testRPG/main/assets/icon_512.png"
+                        loading="lazy" />
+                    <div class="show-on-mobile">
+                        <ul>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/testRPG">Client/Server</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h2>
+                Schrottimon Java
+            </h2>
+            <div class="flex-container">
+                <div class="left">
+                    <span>Port of the Schrottimon TypeScript-Engine to Java. Uses Official TMX-Tilemap Library and
+                        SocketIO. Sadly is not compatible with Web-Version
+                        for Server/Client Communication</span>
+                    <div class="hide-on-mobile">
+                        <ul>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/schrottimon-java">Client</a>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/schrottimon-server">Server</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="right">
+                    <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
+                    <video class="hide-on-mobile" controls autoplay loop width="360">
+                        <!-- <source src="assets/img/schrottimon.mov"> -->
+                        <source loading="lazy" src="assets/img/schrottimon-java.mp4" type="video/mp4">
+                    </video>
+                    <img class="show-on-mobile" width="128px" src="assets/img/schrottimon-java.png" loading="lazy" />
+                    <div class="show-on-mobile">
+                        <ul>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/schrottimon-java">Client</a>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/schrottimon-server">Server</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <h2>
+                DockerVM
+            </h2>
+            <div class="flex-container">
+                <div class="right">
+                    <span>This Game was a try to make a multiplayer pokemon like engine in the browser, playable on
+                        browser and
+                        phones. It uses Tiled-TMX maps and tilesets and uses webpack for packaging/delivery to browser.
+                        It is written in TypeScript and is easily extendable</span>
+                    <div class="hide-on-mobile">
+                        <ul>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/schrottimon-java">Client</a>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/schrottimon-server">Server</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="left">
+                    <!-- <img class="left" loading="lazy" src="assets/img/bmessenger.png"></img> -->
+                    <video class="hide-on-mobile" controls autoplay width="360">
+                        <!-- <source src="assets/img/schrottimon.mov"> -->
+                        <source loading="lazy" src="assets/img/schrottimon.mp4" type="video/mp4">
+                    </video>
+                    <img class="show-on-mobile" width="128px"
+                        src="https://raw.githubusercontent.com/thallosaurus/testRPG/main/assets/icon_512.png"
+                        loading="lazy" />
+                    <div class="show-on-mobile">
+                        <ul>
+                            <li class="small" data-icon="github"><a
+                                    href="https://github.com/thallosaurus/testRPG">Client/Server</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section id="services">
+            <h1 class="hue-rotate">Services</h1>
+            <p>To selected friends I offer infrastructure they can use to realise their projects. Coming soon</p>
+        </section>
     </div>
 </body>
 
