@@ -1,6 +1,6 @@
         .glitch {
             position: relative;
-            color: white;
+            color: var(--foreground-color);
 
             letter-spacing: .1em;
             animation: glitch-skew 0.1s infinite linear alternate-reverse;

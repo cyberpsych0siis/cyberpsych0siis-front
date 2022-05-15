@@ -1,5 +1,18 @@
 @import url(iphone.css);
 
+@media (prefers-color-scheme: dark) {
+
+    li::before {
+        filter: invert(1);
+    }
+  }
+  
+  @media (prefers-color-scheme: light) {
+    li::before {
+        filter: invert(0);
+    }
+  }
+
 * {
     padding: 0;
 }
@@ -196,7 +209,7 @@ li::before {
     height: 2.5em;
     vertical-align: middle;
     padding-right: 0.5em;
-    filter: invert(1);
+
     background-size: 2.5em;
     background-repeat: no-repeat;
 }

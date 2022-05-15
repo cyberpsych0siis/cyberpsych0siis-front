@@ -1,131 +1,153 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
-:root {
-    --background-color: rgba(0,0,0,0.5);
-    --foreground-color: rgba(255,255,255,1);
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background-color: rgba(0, 0, 0, 0.5);
+    --foreground-color: rgba(255, 255, 255, 1);
     --accent-color: red;
     --shadow-color: white;
 
     --glitch-red: red;
     --glitch-green: green;
     --glitch-blue: blue;
+  }
 }
 
-button, input[type="button"], input[type="submit"] {
-    background-color: var(--foreground-color);
-    border: 0px solid transparent;
-    padding: 5px 10px;
-    font-family: 'VT323', monospace;
-    font-size: 20px;
-    
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+@media (prefers-color-scheme: light) {
+  :root {
+    --background-color: rgba(255, 255, 255, 0.5);
+    --foreground-color: rgba(0, 0, 0, 1);
+    --accent-color: red;
+    --shadow-color: white;
+
+    --glitch-red: red;
+    --glitch-green: green;
+    --glitch-blue: blue;
+  }
 }
 
-button:active, input[type="button"]:active, input[type="submit"]:active {
-    background-color: var(--accent-color);
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+button,
+input[type="button"],
+input[type="submit"] {
+  background-color: var(--foreground-color);
+  border: 0px solid transparent;
+  padding: 5px 10px;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+button:active,
+input[type="button"]:active,
+input[type="submit"]:active {
+  background-color: var(--accent-color);
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 input:focus,
 select:focus,
 textarea:focus,
 button:focus {
-    outline: none;
+  outline: none;
 }
 
-::-moz-selection { /* Code for Firefox */
-    color: var(--foreground-color);
-    background: var(--accent-color);
-  }
-  
-  ::selection {
-    color: var(--foreground-color);
-    background: var(--accent-color);
-  }
+::-moz-selection {
+  /* Code for Firefox */
+  color: var(--foreground-color);
+  background: var(--accent-color);
+}
+
+::selection {
+  color: var(--foreground-color);
+  background: var(--accent-color);
+}
 
 /* Text Input */
-input[type="text"], input[type="password"] {
-    font-family: 'VT323', monospace;
-    font-size: 20px;
-    padding: 5px 10px;
-    border: none;
-    
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    appearance: none;
+input[type="text"],
+input[type="password"] {
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  padding: 5px 10px;
+  border: none;
+
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
 }
 
 /* Progress Bar */
 @keyframes progress {
-    from {
-        background-position-x: 0px;
-    }
-    to {
-        background-position-x: 100px;
-    }
+  from {
+    background-position-x: 0px;
+  }
+
+  to {
+    background-position-x: 100px;
+  }
 }
 
 progress[value] {
-    /* padding: 10px; */
-    -webkit-appearance: none;
-    appearance: none;
-    
-    height: 30px;
-    background-color: var(--foreground-color);
-    vertical-align: -0.55em;
-    border: 4px solid var(--foreground-color);
+  /* padding: 10px; */
+  -webkit-appearance: none;
+  appearance: none;
+
+  height: 30px;
+  background-color: var(--foreground-color);
+  vertical-align: -0.55em;
+  border: 4px solid var(--foreground-color);
 }
 
 progress[value]::-webkit-progress-bar {
-    background-color: var(--background-color);
-  }
+  background-color: var(--background-color);
+}
 
 progress[value]::-webkit-progress-value {
-    background-color: var(--foreground-color);
+  background-color: var(--foreground-color);
 }
 
 progress:not([value]) {
-    -webkit-appearance: none;
-    appearance: none;
-    
-    height: 30px;
-    background-color: var(--foreground-color);
-    vertical-align: -0.55em;
-    border: 4px solid var(--foreground-color);
- }
+  -webkit-appearance: none;
+  appearance: none;
+
+  height: 30px;
+  background-color: var(--foreground-color);
+  vertical-align: -0.55em;
+  border: 4px solid var(--foreground-color);
+}
 
 progress:not([value])::-webkit-progress-bar {
-    background: rgb(255,255,255);
-    background: linear-gradient(135deg, var(--foreground-color) 0%, var(--foreground-color) 25%, var(--background-color) 25%, var(--background-color) 75%, var(--foreground-color) 75%, var(--foreground-color) 100%);
-    /* background-size: 25%, auto, contain; */
-    background-position-x: 30px;
-    /* -webkit-animation: progress-no-value 1s linear infinite; */
-  }
+  background: rgb(255, 255, 255);
+  background: linear-gradient(135deg, var(--foreground-color) 0%, var(--foreground-color) 25%, var(--background-color) 25%, var(--background-color) 75%, var(--foreground-color) 75%, var(--foreground-color) 100%);
+  /* background-size: 25%, auto, contain; */
+  background-position-x: 30px;
+  /* -webkit-animation: progress-no-value 1s linear infinite; */
+}
 
-  p.error {
-    text-align: center;
-    border: 1px solid red;
-    padding: 20px 20px 20px 20px;
-    margin: 50px 30px 50px 30px;
-  }
+p.error {
+  text-align: center;
+  border: 1px solid red;
+  padding: 20px 20px 20px 20px;
+  margin: 50px 30px 50px 30px;
+}
 
-  p.error-fill {
-    text-align: center;
-    background-color: red;
-    padding: 20px 20px 20px 20px;
-    margin: 50px 30px 50px 30px;
-  }
+p.error-fill {
+  text-align: center;
+  background-color: red;
+  padding: 20px 20px 20px 20px;
+  margin: 50px 30px 50px 30px;
+}
 
-  p.warning {
-    text-align: center;
-    border: 1px solid yellow;
-    padding: 20px 20px 20px 20px;
-    margin: 50px 30px 50px 30px;
-  }
+p.warning {
+  text-align: center;
+  border: 1px solid yellow;
+  padding: 20px 20px 20px 20px;
+  margin: 50px 30px 50px 30px;
+}
 
 /*   p.warning:before {
       content: url("/assets/warning.png");
