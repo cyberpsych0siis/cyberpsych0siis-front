@@ -374,8 +374,9 @@ window.ontouchend = (e) => {
 }
 
 function hideOverlay() {
-    let e = document.querySelector(".content")
-    e.classList.add("hide");
+    document.querySelectorAll(".content").forEach(e => {
+        e.classList.add("hide");
+    })
 
     let f = document.querySelector(".card");
     f.classList.add("hide");
