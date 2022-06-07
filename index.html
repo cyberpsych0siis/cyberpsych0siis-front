@@ -17,7 +17,9 @@
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
 
-    <script src="assets/anim.js"></script>
+    <!--<script src="assets/anim.js"></script>-->
+    <script type="module" src="assets/js/main.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
 </head>
 
 <body>
@@ -144,6 +146,19 @@
                 <!-- </ul> -->
             </div>
         </section>
+    </div>
+
+    <div class="content">
+        <div id="app">
+            <table>
+                <tr v-for="row in channels" :key="row">
+                    <td v-for="step in 16" :key="step">
+                        <input type="checkbox" @click="toggleStep(row, step)"/>
+                    </td>
+                </tr>
+            </table>
+            <button @click="addChannel()">+</button>
+        </div>
     </div>
 
 
