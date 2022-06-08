@@ -1,3 +1,5 @@
+import { Dot } from "./js/dot.js";
+
 let dots = [];
 
 const CONNECTED_RADIUS = 450;
@@ -45,7 +47,7 @@ window.onload = () => {
 }
 
 function generateDot(i, x = null, y = null) {
-    return {
+    /*return {
         selected: false,
         index: i,
         x: x != null ? x : parseInt(
@@ -68,7 +70,7 @@ function generateDot(i, x = null, y = null) {
             return (Math[this.xMode](this.seed + ts / this.xSinMod) * this.r) + ((this.x / 100) * window.innerWidth);
             /* circled
                 ? (window.innerWidth / 2) + Math.sin((ts / 4000) + this.index/(20 - 10) * 4) * CONNECTED_RADIUS
-                :  */
+                :  *
         },
         getY: function (ts, circled = false) {
             const wigglePos = (Math[this.yMode](this.seed + ts / this.ySinMod) * this.r) + ((this.y / 100) * window.innerHeight);
@@ -76,7 +78,7 @@ function generateDot(i, x = null, y = null) {
             /* return circled
                 ? (window.innerHeight / 2) +Math.cos((ts / 4000) + this.index/(20 - 10) * 4) * CONNECTED_RADIUS
                 : wigglePos 
-                ; */
+                ; *
         },
         getColor: function (ts) {
             const alpha = (this.getRadius(ts) / this.r);
@@ -89,7 +91,9 @@ function generateDot(i, x = null, y = null) {
 
         velocityX: 0,
         velocityY: 0,
-    }
+    }*/
+
+    return new Dot(x, y, i);
 }
 
 function genSeed() {
@@ -104,23 +108,23 @@ let lastDotDrawn = 0;
 
 let fps = 0;
 
-function loop(ts) {
-    const fraction = 1000 / 60;
-    frameCount++;
+function loop(ts = 0) {
+    // const fraction = 1000 / 60;
+    // frameCount++;
     // console.log(frameCount);
-    if (ts > (lastRun + fraction)) {
-        lastRun = ts;
+    // if (ts > (lastRun + fraction)) {
+        // lastRun = ts;
 
         clear();
         logic(ts);
-        if (ts % 1000 > 0) {
+        // if (ts % 1000 > 0) {
             // frameCount = 0;
-        }
+        // }
         // fps = frameCount;
         // }
         drawDots(ts);
         connectDots(ts);
-    }
+    // }
 
     // drawFPS(ts);
 
@@ -130,13 +134,13 @@ function loop(ts) {
 function drawDots(ts) {
     // c.style.webkitFilter = "hue-rotate(" + (ts/100)%360 + "deg)"
 
-    document.querySelectorAll(".hue-rotate").forEach(e => {
+/*     document.querySelectorAll(".hue-rotate").forEach(e => {
         e.style.webkitFilter = "hue-rotate(" + (ts / 100) % 360 + "deg)";
-    });
+    }); */
 
-    document.querySelectorAll(".blurfx").forEach(e => {
+/*     document.querySelectorAll(".blurfx").forEach(e => {
         e.style.webkitFilter += "blur(" + (ts % 500) / 100 + "px)";
-    });
+    }); */
 
     for (let dot of dots) {
         context.fillStyle = dot.getColor(ts);
@@ -169,7 +173,6 @@ function connectDots(ts) {
                 context.stroke();
                 destination.connections.push(dots.indexOf(currentDot));
             }
-
         }
     }
 }
@@ -213,7 +216,8 @@ function spawnNewRandomDot() {
 }
 
 function createGradientForConnection(ts, curr, dest) {
-    // createRadialGradient(x,y,r,x1,y1,r1) 
+    // createRadialGradient(x,y,r,x1,y1,r1)
+    // console.log(curr.getX(ts), curr.getY(ts), dest.getX(ts), dest.getY(ts));
     const gradient = context.createRadialGradient(curr.getX(ts), curr.getY(ts), 1, dest.getX(ts), dest.getY(ts), 1);
     gradient.addColorStop(0, curr.getColor(ts));
     gradient.addColorStop(1, dest.getColor(ts));
@@ -266,20 +270,6 @@ function getDot(x, y, radius, ts) {
 
     return filtered;
 }
-
-/* window.onclick = (e) => {
-    dots.forEach(e => e.selected = false);
-
-    selectedIndex = -1;
-    
-    // console.log(e.clientX / window.innerWidth, e.clientY / window.innerHeight)
-    getDot(e.clientX, e.clientY, 10, e.timeStamp).forEach(e => {
-        selectedIndex = dots.indexOf(e);
-        console.log(selectedIndex);
-        e.selected = true
-        return;
-    })
-} */
 
 let movement = false;
 let isMouseDown = false;
@@ -371,18 +361,6 @@ window.ontouchend = (e) => {
     }
 
     // console.log(touchMap);
-}
-
-function hideOverlay() {
-    document.querySelectorAll(".content").forEach(e => {
-        e.classList.add("hide");
-    })
-
-    let f = document.querySelector(".card");
-    f.classList.add("hide");
-
-    document.body.style.overflow = "hidden";
-    movement = true;
 }
 
 async function loadShape(name) {

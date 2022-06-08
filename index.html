@@ -39,6 +39,23 @@
 
     </div>
 
+    <div class="content hide">
+        <div id="app">
+            <table>
+                <tr class="row" v-for="row in channels" :key="row">
+                    <td>
+                        {{ row.sample }}
+                    </td>
+                    <td class="step" v-for="step in row.steps" :key="step">
+                        <input type="checkbox" v-model="step" :checked="{checked: step}"/>
+                        <!-- <label></label> -->
+                    </td>
+                </tr>
+            </table>
+            <button @click="addChannel()">+</button>
+        </div>
+    </div>
+
     <div class="content">
         <section id="aboutme">
 
@@ -147,20 +164,6 @@
             </div>
         </section>
     </div>
-
-    <div class="content">
-        <div id="app">
-            <table>
-                <tr v-for="row in channels" :key="row">
-                    <td v-for="step in 16" :key="step">
-                        <input type="checkbox" @click="toggleStep(row, step)"/>
-                    </td>
-                </tr>
-            </table>
-            <button @click="addChannel()">+</button>
-        </div>
-    </div>
-
 
     <div class="content">
         <section id="projects">

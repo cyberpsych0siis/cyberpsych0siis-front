@@ -1,8 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+/* @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap'); */
 
 @media (prefers-color-scheme: dark) {
   :root {
     --background-color: rgba(0, 0, 0, 0.5);
+    /* --background-color: rgba(0, 0, 0, 0.5); */
     --foreground-color: rgba(255, 255, 255, 1);
     --accent-color: red;
     --shadow-color: white;
@@ -156,3 +157,24 @@ p.warning {
       max-height: 12px;
       /* background-image: url("/assets/warning.png"); *
   } */
+
+  input[type=checkbox] {
+    /* visibility: hidden; */
+    width: 25px;
+    height: 25px;
+    /* z-index: 10; */
+  }
+  
+  input[type=checkbox] + label {
+    position: absolute;
+    margin-top: -28px;
+    margin-left: 4px;
+    display: block;
+    width: 25px;
+    height: 25px;
+    background: white;
+  }
+  
+  input[type=checkbox]:checked + label {
+    background: red !important;
+  }

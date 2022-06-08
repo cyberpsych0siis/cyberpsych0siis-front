@@ -2,20 +2,18 @@
 export default {
     data() {
       return {
-          count: 0,
           channels: []
         }
     },
     methods: {
         toggleStep(row, step) {
+            // this.channels[row].steps[step].selected = 
             console.log(row, step);
         },
         addChannel() {
             this.channels.push({
                 sample: 'sample.wav',
-                steps: new Array(16).fill({
-                    selected: false
-                })
+                steps: new Array(16).fill(false)
             });
         },
         getStep(row, step) {
@@ -25,6 +23,9 @@ export default {
             this.channels = this.channels.filter((e, i)=> {
                 return i != index;
             });
+        },
+        log(data) {
+            console.log(data);
         }
     }
   }

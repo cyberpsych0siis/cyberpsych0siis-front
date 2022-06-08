@@ -25,21 +25,21 @@ window.addEventListener("load", () => {
     }
 
     if (window.Worker) {
-        const worker = new Worker("assets/js/workers/worker.js");
+        const mapper = new Worker("assets/js/workers/worker.js");
 
         const callback = (ts) => {
             //const fraction = 1000 / 60;
             //frameCount++;
             //if (ts > (lastRun + fraction)) {
                 setCSS(ts);
-                worker.postMessage({
+                mapper.postMessage({
                     action: "processConnections",
                     dots: dots.map(e => { return e.serialize(ts, window.innerWidth, window.innerHeight); })
                 });
             //}
         }
 
-        worker.onmessage = (e) => {
+        mapper.onmessage = (e) => {
             //render result
             renderResult(context, e.data.dots, e.data.conn).then(e => {
                 requestAnimationFrame(callback);
@@ -121,3 +121,14 @@ function getCSSVariable(v) {
     return getComputedStyle(document.body).getPropertyValue(v).trim();
 }
 
+function hideOverlay() {
+    document.querySelectorAll(".content").forEach(e => {
+        e.classList.add("hide");
+    })
+
+    let f = document.querySelector(".card");
+    f.classList.add("hide");
+
+    document.body.style.overflow = "hidden";
+    movement = true;
+}
