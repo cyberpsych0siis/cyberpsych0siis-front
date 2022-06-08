@@ -1,9 +1,28 @@
-import { Dot } from './dot.js';
-import TechnoPlayer from './technoplayer.js';
+import { Dot } from './models/dot.js';
+import TechnoPlayer from './components/technoplayer.js';
+import MouseHandler from './handler/mouseHandler.js';
+import renderGlResult from './renderer/renderGlResult.js';
+import renderResult from './renderer/render2dResult.js';
+
+function typerEffect(ch, elem) {
+    return new Promise((res, rej) => {
+        elem.dataset.text += ch;
+        elem.innerText += ch;
+        setTimeout(res, 100);
+    });
+}
 
 window.addEventListener("load", () => {
+    const METHOD = "2d";
+
     const canvas = document.querySelector("#bganim");
-    const context = canvas.getContext("2d");
+    let context = null;
+
+    if (METHOD == "webgl") {
+        context = canvas.getContext("webgl2");
+    } else {
+        context = canvas.getContext("2d");
+    }
 
     canvas.height = window.innerHeight;
     canvas.width = window.innerWidth;
@@ -24,29 +43,53 @@ window.addEventListener("load", () => {
         dots.push(new Dot(i, x, y));
     }
 
+    (async function() {
+        const title_ = document.querySelector("#pagetitle");
+        const ptitle = new URL(location.href).hostname;
+
+        for (const c of ptitle) {
+            await typerEffect(c, title_);
+            console.log("--- tick ---");
+        }
+    })();
+
     if (window.Worker) {
+        MouseHandler(dots);
+
         const mapper = new Worker("assets/js/workers/worker.js");
 
         const callback = (ts) => {
-            //const fraction = 1000 / 60;
-            //frameCount++;
-            //if (ts > (lastRun + fraction)) {
-                setCSS(ts);
+            setCSS(ts);
+            setTimeout(() => {
+
                 mapper.postMessage({
                     action: "processConnections",
                     dots: dots.map(e => { return e.serialize(ts, window.innerWidth, window.innerHeight); })
                 });
-            //}
+            }, 10);
         }
 
         mapper.onmessage = (e) => {
             //render result
-            renderResult(context, e.data.dots, e.data.conn).then(e => {
-                requestAnimationFrame(callback);
-            });
+            if (METHOD == "2d") {
+
+
+                renderResult(context, e.data.dots, e.data.conn).then(e => {
+                    requestAnimationFrame(callback);
+                });
+            } else if (METHOD == "webgl") {
+                if (context === null) {
+                    alert("Unable to initialize WebGL. Your browser or machine may not support it.");
+                    return;
+                } else {
+                    renderGlResult(context, e.data.dots, e.data.conn).then(e => {
+                        requestAnimationFrame(callback);
+                    });
+                }
+            }
         }
 
-        const { createApp } = Vue
+        const { createApp } = Vue;
 
         createApp(TechnoPlayer).mount('#app')
 
@@ -66,46 +109,6 @@ window.addEventListener("load", () => {
         requestAnimationFrame(fallbackCallback);
     }
 });
-/**
- * 
- * @param {CanvasContext2D} context 
- * @param {*} dots 
- */
-const renderResult = (context, dots, connections) => {
-    return new Promise((res, rej) => {
-        context.fillStyle = getCSSVariable("--background-color");
-        context.fillRect(0, 0, window.innerWidth, window.innerHeight);
-
-        for (let dot of dots) {
-            context.fillStyle = dot.c;
-            context.beginPath();
-            context.arc(dot.x, dot.y, dot.r, 0, 2 * Math.PI);
-            context.fill();
-        }
-
-        for (const c of connections) {
-            const from = dots[c.from];
-            const to = dots[c.to];
-
-            context.strokeStyle = createGradientForConnection(context, from, to);
-            context.beginPath();
-            context.moveTo(from.x, from.y);
-            context.lineTo(to.x, to.y);
-            context.lineWidth = 1;
-            context.stroke();
-        }
-        res();
-    });
-}
-
-const createGradientForConnection = (context, curr, dest) => {
-    // createRadialGradient(x,y,r,x1,y1,r1) 
-    const gradient = context.createRadialGradient(curr.x, curr.y, 100, dest.x, dest.y, 100);
-    gradient.addColorStop(0, curr.c);
-    gradient.addColorStop(1, dest.c);
-
-    return gradient;
-}
 
 function setCSS(ts) {
     document.querySelectorAll(".hue-rotate").forEach(e => {
@@ -117,18 +120,6 @@ function setCSS(ts) {
     });
 }
 
-function getCSSVariable(v) {
+export function getCSSVariable(v) {
     return getComputedStyle(document.body).getPropertyValue(v).trim();
-}
-
-function hideOverlay() {
-    document.querySelectorAll(".content").forEach(e => {
-        e.classList.add("hide");
-    })
-
-    let f = document.querySelector(".card");
-    f.classList.add("hide");
-
-    document.body.style.overflow = "hidden";
-    movement = true;
 }

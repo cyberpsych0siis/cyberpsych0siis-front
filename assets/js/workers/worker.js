@@ -1,24 +1,25 @@
 addEventListener('message', event => {
     // switch (event.data.action) {
-        // case "processConnections":
-            const connections = [];
-            for (let i = 0; i < event.data.dots.length; i++) {
-                const cdot = event.data.dots[i];
-            
-                for (let j = i + 1; j < event.data.dots.length; j++) {
-                    /* console.log("connecting " + i + " to " + j); */
-                    connections.push({
-                        from: i,
-                        to: j
-                    });
-                }
-            }
+    // case "processConnections":
+    const connections = [];
+    for (let i = 0; i < event.data.dots.length; i++) {
+        const cdot = event.data.dots[i];
 
-            postMessage(
-                {
-                    dots: event.data.dots,
-                    conn: connections
-                });
-            // break;
-    // }
+        for (let j = i + 1; j < event.data.dots.length; j++) {
+            /* console.log("connecting " + i + " to " + j); */
+            connections.push({
+                from: i,
+                to: j
+            });
+        }
+    }
+
+    setTimeout(() => {
+
+        postMessage(
+            {
+                dots: event.data.dots,
+                conn: connections
+            });
+    }, 10);
 });

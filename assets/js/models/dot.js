@@ -18,6 +18,10 @@ export class Dot {
         this.seed = parseInt(Math.random() * 90);
     }
 
+    getAsMatrix() {
+        return [this.x, this.y, this.r];
+    }
+
     getRadius(ts) {
         return Math.abs(Math.sin(this.seed + ts / 1000) * this.r);
     }
