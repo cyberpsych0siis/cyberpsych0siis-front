@@ -1,9 +1,8 @@
 import { Dot } from './models/dot.js';
-import TechnoPlayer from './components/technoplayer.js';
+import TechnoPlayer, { getCurrentData } from './components/technoplayer.js';
 import MouseHandler from './handler/mouseHandler.js';
 import renderGlResult from './renderer/renderGlResult.js';
 import renderResult from './renderer/render2dResult.js';
-import store from './store/store.js';
 
 function typerEffect(ch, elem) {
     return new Promise((res, rej) => {
@@ -61,8 +60,11 @@ window.addEventListener("load", () => {
         const mapper = new Worker("assets/js/workers/worker.js");
 
         const callback = (ts) => {
-            setCSS(ts);
+            //setCSS(ts);
             setTimeout(() => {
+
+                // console.log(Sequencer.getCurrentData().buffer[0]);
+                // console.log(getCurrentData());
 
                 mapper.postMessage({
                     action: "processConnections",
@@ -74,8 +76,6 @@ window.addEventListener("load", () => {
         mapper.onmessage = (e) => {
             //render result
             if (METHOD == "2d") {
-
-
                 renderResult(context, e.data.dots, e.data.conn).then(e => {
                     requestAnimationFrame(callback);
                 });
@@ -90,14 +90,6 @@ window.addEventListener("load", () => {
                 }
             }
         }
-
-        const { createApp } = Vue;
-
-        const playerApp = createApp(TechnoPlayer);
-
-        // playerApp.use(store());
-        
-        playerApp.mount('#player');
 
         requestAnimationFrame(callback);
     } else {
@@ -114,6 +106,16 @@ window.addEventListener("load", () => {
 
         requestAnimationFrame(fallbackCallback);
     }
+
+    const { createApp } = Vue;
+
+    const playerApp = createApp(TechnoPlayer);
+
+    // playerApp.use(store());
+    
+    playerApp.mount('#playerapp');
+
+    hljs.highlightAll()
 });
 
 function setCSS(ts) {

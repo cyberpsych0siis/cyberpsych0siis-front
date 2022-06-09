@@ -14,8 +14,9 @@ addEventListener('message', event => {
         }
     }
 
+    
     setTimeout(() => {
-
+        
         postMessage(
             {
                 dots: event.data.dots,

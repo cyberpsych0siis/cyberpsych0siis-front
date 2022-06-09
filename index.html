@@ -48,6 +48,7 @@
             <a href="#technologies">Technologies</a>
             <a href="#projects">Projects</a>
             <a href="#dj">DJ PRiSMFLUX</a>
+
             <p>
                 <small onclick="hideOverlay()">Hide Overlay</small>
             </p>
@@ -55,39 +56,42 @@
 
     </div>
 
-    <div class="content">
-        <div id="player">
-            <button @click="togglePlay()" class="hue-rotate">{{ playing ? "Pause" : "Play" }}</button>
-            <button @click="addChannel()" class="hue-rotate">+</button>
-            <input type="number" @input="setBpm" v-model="bpm" />
+    <div class="content small">
+        <section id="player">
+            <div id="playerapp">
+                <button @click="togglePlay()" class="hue-rotate">{{ playing ? "Pause" : "Play" }}</button>
+                <input type="number" @input="setBpm" v-model="bpm" />
 
-            <table>
-                <tr class="row" v-for="row in channels" :key="row" :data-step="currentTick % row.steps.length">
-                    <td>
-                        <select v-model="row.sample">
-                            <optgroup label="Bassdrums">
-                                <option v-for="sel in selection.bassdrum">{{ sel }}</option>
-                            </optgroup>
-                            <optgroup label="Snares">
-                                <option v-for="sel in selection.snares">{{ sel }}</option>
-                            </optgroup>
-                            <optgroup label="Closed Hat">
-                                <option v-for="sel in selection.chat">{{ sel }}</option>
-                            </optgroup>
-                            <optgroup label="Open Hat">
-                                <option v-for="sel in selection.ohat">{{ sel }}</option>
-                            </optgroup>
-                            <optgroup label="Synth">
-                                <option v-for="sel in selection.synth">{{ sel }}</option>
-                            </optgroup>
-                        </select>
-                    </td>
-                    <td class="step hue-rotate" v-for="(step, index) in row.steps" :key="step">
-                        <input type="checkbox" v-model="row.steps[index]" />
-                    </td>
-                </tr>
-            </table>
-        </div>
+                <table>
+                    <tr class="row" v-for="row in channels" :key="row" :data-step="currentTick % row.steps.length"
+                        :data-playing="playing">
+                        <td>
+                            <select v-model="row.sample">
+                                <optgroup label="Bassdrums">
+                                    <option v-for="sel in selection.bassdrum">{{ sel }}</option>
+                                </optgroup>
+                                <optgroup label="Snares">
+                                    <option v-for="sel in selection.snares">{{ sel }}</option>
+                                </optgroup>
+                                <optgroup label="Closed Hat">
+                                    <option v-for="sel in selection.chat">{{ sel }}</option>
+                                </optgroup>
+                                <optgroup label="Open Hat">
+                                    <option v-for="sel in selection.ohat">{{ sel }}</option>
+                                </optgroup>
+                                <optgroup label="Synth">
+                                    <option v-for="sel in selection.synth">{{ sel }}</option>
+                                </optgroup>
+                            </select>
+                        </td>
+                        <td class="step hue-rotate" v-for="(step, index) in row.steps" :key="step">
+                            <input type="checkbox" v-model="row.steps[index]" />
+                        </td>
+                    </tr>
+                </table>
+                <button @click="addChannel()" class="hue-rotate">+</button>
+            </div>
+        </section>
     </div>
 
     <div class="content">
@@ -535,7 +539,8 @@ function hb(size = 0, useMiB = false) {
                 <a href="https://soundcloud.com/prismflux" title="PRiSMFLUX" target="_blank"
                     style="color: #cccccc; text-decoration: none;">PRiSMFLUX</a> · <a
                     href="https://soundcloud.com/prismflux/ego-death" title="Ego Death" target="_blank"
-                    style="color: #cccccc; text-decoration: none;">Ego Death</a></div>
+                    style="color: #cccccc; text-decoration: none;">Ego Death</a>
+            </div>
     </div>
     </section>
     </div>

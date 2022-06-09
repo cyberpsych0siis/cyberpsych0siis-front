@@ -40,73 +40,124 @@ function fragmentShader(gl) {
     return fragShader;
 }
 
+function createCircle(scaleW = 1, scaleH = 1, offsetX = 0, offsetY = 0, offsetZ = 0) {
+    let a = [];
+
+    for (let i = 1; i <= 360; i++) {
+        // const x = Math.sin(i) / (w);
+        const x = Math.sin(i);
+        const y = Math.cos(i);
+
+        const finalX = (scaleW * x) + offsetX;
+        const finalY = (scaleH * y) + offsetY;
+
+        // console.log(finalX, finalY);
+        // debugger;
+
+        a.push(finalX, finalY);
+    }
+    // console.log(a);
+    // debugger;
+    return a;
+}
+
+function draw(gl, dots, mode = gl.POINTS) {
+    const vertex_buffer = gl.createBuffer();
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
+    gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(dots), gl.STATIC_DRAW);
+    gl.bindBuffer(gl.ARRAY_BUFFER, null);
+
+    /*=========================Shaders========================*/
+    // Create a shader program object to store
+    // the combined shader program
+    var shaderProgram = gl.createProgram();
+    gl.attachShader(shaderProgram, vertexShader(gl));
+    gl.attachShader(shaderProgram, fragmentShader(gl));
+    gl.linkProgram(shaderProgram);
+    gl.useProgram(shaderProgram);
+
+    /*======== Associating shaders to buffer objects ========*/
+
+    // Bind vertex buffer object
+    gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
+
+    // Get the attribute location
+    var coord = gl.getAttribLocation(shaderProgram, "coordinates");
+
+    // Point an attribute to the currently bound VBO
+    gl.vertexAttribPointer(coord, 2, gl.FLOAT, false, 0, 0);
+
+    // Enable the attribute
+    gl.enableVertexAttribArray(coord);
+
+    /*============= Drawing the primitive ===============*/
+
+    // Clear the canvas
+    // gl.clearColor(0.0, 0.0, 0.0, 1.0);
+
+    // Enable the depth test
+    gl.enable(gl.DEPTH_TEST);
+
+    // Clear the color buffer bit
+    gl.clear(gl.COLOR_BUFFER_BIT);
+
+    // Set the view port
+    gl.viewport(0, 0, window.innerWidth, window.innerHeight);
+
+    // Draw the triangle
+    gl.drawArrays(mode, 0, dots.length);
+}
+
+function drawShapes(gl, shapesArray) {
+    for (const shape of shapesArray) {
+        draw(gl, shape, gl.TRIANGLE_FAN);
+    }
+}
+
 export default (gl, dots, connections) => {
     return new Promise((res, rej) => {
         // console.log(gl);
-        const vertex_buffer = gl.createBuffer();
 
-        gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
+
+
 
         // Pass the vertex data to the buffer
         const positions = [];
         for (let d of dots) {
             let { x, y, r } = d;
-            x = (x / window.innerWidth) - 0.5;
-            y = (y / window.innerHeight) - 0.5;
+            x = (x / window.innerWidth);
+            y = (y / window.innerHeight);
 
-            positions.push(x, y, (r - 2) / 10);
+            // console.log(x, y);
+            // debugger;
+
+            // positions.push(x, y, (r - 2) / 10);
+
+            positions.push(createCircle(0.01, 0.01, x, y));
         }
+
+        // debugger;
+        // console.log(positions);
+        const g = [];
+        // for (const 
+
+        drawShapes(gl, positions);
+        // draw(gl, positions, gl.TRIANGLE_FAN);
+
+        // debugger;
 
         // console.log(positions);
 
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(positions), gl.STATIC_DRAW);
+
 
         // Unbind the buffer
-        gl.bindBuffer(gl.ARRAY_BUFFER, null);
 
-        /*=========================Shaders========================*/
-        // Create a shader program object to store
-        // the combined shader program
-        var shaderProgram = gl.createProgram();
 
-        // Attach shaders
-        gl.attachShader(shaderProgram, vertexShader(gl));
-        gl.attachShader(shaderProgram, fragmentShader(gl));
-        gl.linkProgram(shaderProgram);
 
-        // Use the combined shader program object
-        gl.useProgram(shaderProgram);
 
-        /*======== Associating shaders to buffer objects ========*/
 
-        // Bind vertex buffer object
-        gl.bindBuffer(gl.ARRAY_BUFFER, vertex_buffer);
 
-        // Get the attribute location
-        var coord = gl.getAttribLocation(shaderProgram, "coordinates");
 
-        // Point an attribute to the currently bound VBO
-        gl.vertexAttribPointer(coord, 3, gl.FLOAT, false, 0, 0);
-
-        // Enable the attribute
-        gl.enableVertexAttribArray(coord);
-
-        /*============= Drawing the primitive ===============*/
-
-        // Clear the canvas
-        gl.clearColor(0.0, 0.0, 0.0, 1.0);
-
-        // Enable the depth test
-        gl.enable(gl.DEPTH_TEST);
-
-        // Clear the color buffer bit
-        gl.clear(gl.COLOR_BUFFER_BIT);
-
-        // Set the view port
-        gl.viewport(0, 0, window.innerWidth, window.innerHeight);
-
-        // Draw the triangle
-        gl.drawArrays(gl.POINTS, 0, dots.length);
         res();
     });
 }

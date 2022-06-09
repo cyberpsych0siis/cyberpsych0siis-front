@@ -1,3 +1,4 @@
+import { getCurrentData } from "../components/technoplayer.js";
 export class Dot {
     selected = false;
 
@@ -42,9 +43,12 @@ export class Dot {
     }
 
     serialize(ts, w, h) {
+        const offset = getCurrentData()[0] / 255 - 0.5
+
+        // console.log(offset);
         return {
             r: this.getRadius(ts),
-            x: this.getX(ts, w),
+            x: this.getX(ts, w) + (offset * 30),
             y: this.getY(ts, h),
             c: this.getColor(ts)
         }

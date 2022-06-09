@@ -83,6 +83,15 @@ input[type="password"] {
   appearance: none;
 }
 
+select {
+  font-family: 'VT323', monospace;
+  font-family: 20px;
+  padding: 5px 10px;
+  color: var(--background-color);
+  background-color: var(--foreground-color);
+  border: none;
+}
+
 /* Progress Bar */
 @keyframes progress {
   from {
