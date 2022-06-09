@@ -17,6 +17,8 @@
     <link rel="stylesheet" href="assets/page.css">
     <link rel="stylesheet" href="assets/player.css">
 
+    <link rel="manifest" href="assets/manifest.webmanifest">
+
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
 
@@ -60,7 +62,7 @@
         <section id="player">
             <div id="playerapp">
                 <button @click="togglePlay()" class="hue-rotate">{{ playing ? "Pause" : "Play" }}</button>
-                <input type="number" @input="setBpm" v-model="bpm" />
+                <input type="number" class="right" @input="setBpm" v-model="bpm" />
                 <div class="overflow">
                     <table>
                         <tr class="row" v-for="row in channels" :key="row" :data-step="currentTick % row.steps.length"

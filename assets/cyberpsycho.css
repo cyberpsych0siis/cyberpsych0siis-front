@@ -82,6 +82,12 @@ input[type="password"] {
   -moz-appearance: none;
   appearance: none;
 }
+input[type="number"] {
+  width: 2em;
+}
+.right {
+  float: right;
+}
 
 select {
   font-family: 'VT323', monospace;
