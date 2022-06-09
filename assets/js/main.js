@@ -60,7 +60,7 @@ window.addEventListener("load", () => {
         const mapper = new Worker("assets/js/workers/worker.js");
 
         const callback = (ts) => {
-            //setCSS(ts);
+            setCSS(ts);
             setTimeout(() => {
 
                 // console.log(Sequencer.getCurrentData().buffer[0]);
