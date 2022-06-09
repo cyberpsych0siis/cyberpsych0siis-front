@@ -3,6 +3,7 @@ import TechnoPlayer from './components/technoplayer.js';
 import MouseHandler from './handler/mouseHandler.js';
 import renderGlResult from './renderer/renderGlResult.js';
 import renderResult from './renderer/render2dResult.js';
+import store from './store/store.js';
 
 function typerEffect(ch, elem) {
     return new Promise((res, rej) => {
@@ -92,7 +93,11 @@ window.addEventListener("load", () => {
 
         const { createApp } = Vue;
 
-        createApp(TechnoPlayer).mount('#player')
+        const playerApp = createApp(TechnoPlayer);
+
+        // playerApp.use(store());
+        
+        playerApp.mount('#player');
 
         requestAnimationFrame(callback);
     } else {

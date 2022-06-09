@@ -1,0 +1,99 @@
+/* #player {
+    background-color: green !important;
+} */
+
+/* tr[data-step="0"],
+tr[data-step="4"],
+tr[data-step="8"],
+tr[data-step="12"]
+ {
+    background-color: red !important;
+} */
+
+td {
+/*     transition: all .1s ease-out; */
+}
+
+tr[data-step="0"] td:nth-child(2) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+tr[data-step="1"] td:nth-child(3) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="2"] td:nth-child(4) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="3"] td:nth-child(5) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="4"] td:nth-child(6) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="5"] td:nth-child(7) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="6"] td:nth-child(8) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="7"] td:nth-child(9) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="8"] td:nth-child(10) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="9"] td:nth-child(11) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="10"] td:nth-child(12) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="11"] td:nth-child(13) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="12"] td:nth-child(14) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="13"] td:nth-child(15) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="14"] td:nth-child(16) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="15"] td:nth-child(17) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-step="16"] td:nth-child(18) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}

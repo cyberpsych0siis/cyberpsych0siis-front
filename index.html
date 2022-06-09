@@ -15,6 +15,7 @@
     <link rel="stylesheet" href="assets/glitch.css">
     <link rel="stylesheet" href="assets/iphone.css">
     <link rel="stylesheet" href="assets/page.css">
+    <link rel="stylesheet" href="assets/player.css">
 
     <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/styles/default.min.css">
     <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/11.5.1/highlight.min.js"></script>
@@ -22,6 +23,7 @@
     <!--<script src="assets/anim.js"></script>-->
     <script type="module" src="assets/js/main.js"></script>
     <script src="https://unpkg.com/vue@3.2.37/dist/vue.global.prod.js"></script>
+    <script src="https://requirejs.org/docs/release/2.3.6/minified/require.js"></script>
     <script>
         function hideOverlay() {
             document.querySelectorAll(".content").forEach(e => {
@@ -55,12 +57,12 @@
 
     <div class="content">
         <div id="player">
-            <button @click="addChannel()">+</button>
-            <button @click="togglePlay()">{{ playing ? "Pause" : "Play" }}</button>
+            <button @click="togglePlay()" class="hue-rotate">{{ playing ? "Pause" : "Play" }}</button>
+            <button @click="addChannel()" class="hue-rotate">+</button>
             <input type="number" @input="setBpm" v-model="bpm" />
 
             <table>
-                <tr class="row" v-for="row in channels" :key="row">
+                <tr class="row" v-for="row in channels" :key="row" :data-step="currentTick % row.steps.length">
                     <td>
                         <select v-model="row.sample">
                             <optgroup label="Bassdrums">
@@ -80,7 +82,7 @@
                             </optgroup>
                         </select>
                     </td>
-                    <td class="step" v-for="(step, index) in row.steps" :key="step">
+                    <td class="step hue-rotate" v-for="(step, index) in row.steps" :key="step">
                         <input type="checkbox" v-model="row.steps[index]" />
                     </td>
                 </tr>

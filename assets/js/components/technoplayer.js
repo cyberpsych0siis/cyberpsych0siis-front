@@ -6,6 +6,7 @@ export default {
             sequencer: null,
             bpm: 120,
             playing: false,
+            currentTick: 0,
             selection: {
                 bassdrum: [
                     "kicks/sample1.wav",
@@ -32,6 +33,21 @@ export default {
                     "synth/syn4.wav"
                 ]
             }
+        }
+    },
+    mounted() {
+        if (this.sequencer === null) {
+            var AudioContext = window.AudioContext || window.webkitAudioContext;
+            var audioCtx = new AudioContext();
+            this.audioCtx = audioCtx;
+            this.sequencer = new Sequencer(audioCtx);
+            this.sequencer.addEventListener("tick", () => {
+                this.currentTick++;
+            });
+
+            this.sequencer.addEventListener("stop", () => {
+                this.currentTick = 0;
+            });
         }
     },
     methods: {
@@ -68,12 +84,12 @@ export default {
         },
         play() {
             this.playing = true;
-            if (this.sequencer === null) {
+/*             if (this.sequencer === null) {
                 var AudioContext = window.AudioContext || window.webkitAudioContext;
                 var audioCtx = new AudioContext();
                 this.audioCtx = audioCtx;
                 this.sequencer = new Sequencer(audioCtx);
-            }
+            } */
             this.audioCtx.resume();
             this.sequencer.play(this.channels);
         },
