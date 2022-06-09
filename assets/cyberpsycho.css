@@ -70,15 +70,26 @@ button:focus {
 
 /* Text Input */
 input[type="text"],
+input[type="number"],
 input[type="password"] {
   font-family: 'VT323', monospace;
   font-size: 20px;
   padding: 5px 10px;
   border: none;
+  text-align: right;
 
   -webkit-appearance: none;
   -moz-appearance: none;
   appearance: none;
+}
+
+select {
+  font-family: 'VT323', monospace;
+  font-family: 20px;
+  padding: 5px 10px;
+  color: var(--background-color);
+  background-color: var(--foreground-color);
+  border: none;
 }
 
 /* Progress Bar */

@@ -1,0 +1,116 @@
+#playerapp table {
+    display: flex;
+    /* width: 100%; */
+    justify-content: center;
+}
+
+tr td:nth-child(4n + 2) {
+    border-left: 3px solid var(--foreground-color);
+}
+
+tr[data-playing="true"][data-step="0"] td:nth-child(2) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="1"] td:nth-child(3) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="2"] td:nth-child(4) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="3"] td:nth-child(5) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="4"] td:nth-child(6) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="5"] td:nth-child(7) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="6"] td:nth-child(8) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="7"] td:nth-child(9) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="8"] td:nth-child(10) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="9"] td:nth-child(11) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="10"] td:nth-child(12) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="11"] td:nth-child(13) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="12"] td:nth-child(14) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="13"] td:nth-child(15) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="14"] td:nth-child(16) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="15"] td:nth-child(17) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+tr[data-playing="true"][data-step="16"] td:nth-child(18) {
+    background-color: var(--accent-color) !important;
+    accent-color: var(--accent-color);
+}
+
+table {
+    border-spacing: 0px;
+}
+
+.container {
+    display: grid; 
+    grid-auto-columns: 1fr; 
+    grid-template-columns: 1fr 16fr; 
+    grid-template-rows: 1fr; 
+    gap: 0px 0px; 
+    grid-template-areas: 
+      "sample stepgrid"; 
+  }
+  .sample { grid-area: sample; }
+  .stepgrid { grid-area: stepgrid; }
+
+.small {
+    width: 40vw !important;
+    left: 30vw !important;
+    right: 30vw !important;
+}

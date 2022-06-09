@@ -1,4 +1,5 @@
 // my-component.js
+let sequencer = null;
 export default {
     data() {
         return {
@@ -6,6 +7,7 @@ export default {
             sequencer: null,
             bpm: 120,
             playing: false,
+            currentTick: 0,
             selection: {
                 bassdrum: [
                     "kicks/sample1.wav",
@@ -34,10 +36,25 @@ export default {
             }
         }
     },
+    mounted() {
+        if (this.sequencer === null) {
+            var AudioContext = window.AudioContext || window.webkitAudioContext;
+            var audioCtx = new AudioContext();
+            this.audioCtx = audioCtx;
+            sequencer = new Sequencer(audioCtx);
+            this.sequencer = sequencer;
+            this.sequencer.addEventListener("tick", () => {
+                this.currentTick++;
+            });
+
+            this.sequencer.addEventListener("stop", () => {
+                this.currentTick = 0;
+            });
+
+            this.addChannel();
+        }
+    },
     methods: {
-        setSample(r) {
-            console.log(r)
-        },
         toggleStep(row, step) {
             // this.channels[row].steps[step].selected = 
             console.log(row, step);
@@ -68,12 +85,6 @@ export default {
         },
         play() {
             this.playing = true;
-            if (this.sequencer === null) {
-                var AudioContext = window.AudioContext || window.webkitAudioContext;
-                var audioCtx = new AudioContext();
-                this.audioCtx = audioCtx;
-                this.sequencer = new Sequencer(audioCtx);
-            }
             this.audioCtx.resume();
             this.sequencer.play(this.channels);
         },
@@ -87,7 +98,17 @@ export default {
     }
 }
 
-class Sequencer extends EventTarget {
+let analyser = null;
+
+export function getCurrentData() {
+    let array = new Uint8Array(3);
+
+    analyser.getByteTimeDomainData(array);
+    return array;
+}
+
+
+export class Sequencer extends EventTarget {
 
     sequencerFrameId = -1;
     bpm = 120;
@@ -97,22 +118,15 @@ class Sequencer extends EventTarget {
     constructor(audioCtx) {
         super();
 
-        this.analyser = audioCtx.createAnalyser();
+        analyser = audioCtx.createAnalyser();
 
-        this.analyser.connect(audioCtx.destination);
+        analyser.connect(audioCtx.destination);
 
         this.audioCtx = audioCtx;
         // oscillator.start();
     }
     setBpm(bpm) {
         this.bpm = bpm;
-    }
-
-    getCurrentData() {
-        let array = new Uint8Array(1);
-
-        this.analyser.getByteTimeDomainData(array);
-        return array;
     }
 
     async play(data) {
@@ -158,9 +172,9 @@ class Sequencer extends EventTarget {
             const flanke = (delta % sixteenth) / sixteenth > 0.5;
 
             if (flankeOld !== flanke) {
-                this.dispatchEvent(new Event("tick", this.getCurrentData()));
+                this.dispatchEvent(new Event("tick", getCurrentData()));
 /*                 console.log(this.getCurrentData()); */
-                this.tick(this.getCurrentData());
+                this.tick(getCurrentData());
                 flankeOld = flanke;
             }
             /* this.sequencerFrameId = setTimeout(loop, 10); */
@@ -199,7 +213,7 @@ class SRow {
     playSample() {
         const sample = this.ctx.createBufferSource();
         sample.buffer = this.sample;
-        sample.connect(this.parentSequencer.analyser);
+        sample.connect(analyser);
         sample.start();
     }
     /* stop() {

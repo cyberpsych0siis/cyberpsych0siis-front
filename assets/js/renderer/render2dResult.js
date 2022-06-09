@@ -5,6 +5,8 @@ export default (context, dots, connections) => {
         context.fillStyle = getCSSVariable("--background-color");
         context.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
+        // console.log(Sequencer.getCurrentData());
+
         for (let dot of dots) {
             context.fillStyle = dot.c;
             context.beginPath();
@@ -28,7 +30,8 @@ export default (context, dots, connections) => {
 }
 
 const createGradientForConnection = (context, curr, dest) => {
-    // createRadialGradient(x,y,r,x1,y1,r1) 
+    // createRadialGradient(x,y,r,x1,y1,r1)
+    // console.log(curr.x, curr.y, 100, dest.x, dest.y, 100);
     const gradient = context.createRadialGradient(curr.x, curr.y, 100, dest.x, dest.y, 100);
     gradient.addColorStop(0, curr.c);
     gradient.addColorStop(1, dest.c);
