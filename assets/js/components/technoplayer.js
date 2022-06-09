@@ -12,7 +12,8 @@ export default {
                 bassdrum: [
                     "kicks/sample1.wav",
                     "kicks/sample2.wav",
-                    "kicks/sample3.wav"
+                    "kicks/sample3.wav",
+                    "kicks/kick4.wav"
                 ],
                 snares: [
                     "snares/snare1.wav"
@@ -32,6 +33,13 @@ export default {
                     "synth/syn2.wav",
                     "synth/syn3.wav",
                     "synth/syn4.wav"
+                ],
+                bass: [
+                    "bass/bass1.wav",
+                    "bass/bass2.wav",
+                    "bass/bass3.wav",
+                    "bass/bass4.wav",
+                    "bass/bass5.wav"
                 ]
             }
         }
@@ -41,7 +49,7 @@ export default {
             var AudioContext = window.AudioContext || window.webkitAudioContext;
             var audioCtx = new AudioContext();
             this.audioCtx = audioCtx;
-            sequencer = new Sequencer(audioCtx);
+            sequencer = new Sequencer(audioCtx, this.bpm);
             this.sequencer = sequencer;
             this.sequencer.addEventListener("tick", () => {
                 this.currentTick++;
@@ -51,7 +59,9 @@ export default {
                 this.currentTick = 0;
             });
 
+            //add psytrance channel
             this.addChannel();
+
         }
     },
     methods: {
@@ -59,8 +69,8 @@ export default {
             // this.channels[row].steps[step].selected = 
             console.log(row, step);
         },
-        addChannel() {
-            this.channels.push({
+        addChannel(data) {
+            this.channels.push(data ? data : {
                 sample: this.selection.bassdrum[0],
                 steps: new Array(16).fill(false)
             });
@@ -94,6 +104,27 @@ export default {
         },
         setBpm() {
             this.sequencer.setBpm(this.bpm);
+        },
+        openMixer() {
+            fenster = window.open("mixer.html", "fenster1", "width=600,height=400,status=yes,scrollbars=yes,resizable=yes");
+            fenster.focus();
+        },
+        exportStep() {
+            const data = JSON.stringify({
+                bpm: this.bpm,
+                channelData: this.channels
+            });
+            const str = btoa(data);
+            console.log(str);
+        },
+        importStep() {
+            const data = prompt("Data");
+            if (data) {
+                const decData = JSON.parse(atob(data));
+                console.log(decData);
+                this.channels = decData.channelData;
+                this.bpm = decData.bpm;
+            }
         }
     }
 }
@@ -111,11 +142,10 @@ export function getCurrentData() {
 export class Sequencer extends EventTarget {
 
     sequencerFrameId = -1;
-    bpm = 120;
 
     currentTick = 0;
 
-    constructor(audioCtx) {
+    constructor(audioCtx, bpm) {
         super();
 
         analyser = audioCtx.createAnalyser();
@@ -123,6 +153,7 @@ export class Sequencer extends EventTarget {
         analyser.connect(audioCtx.destination);
 
         this.audioCtx = audioCtx;
+        this.bpm = bpm;
         // oscillator.start();
     }
     setBpm(bpm) {
@@ -140,6 +171,10 @@ export class Sequencer extends EventTarget {
             this.patterns.push(new SRow(this.audioCtx, aBuffer, d, this));
         }
         this.startSequencer();
+    }
+
+    playBlob(blob) {
+        
     }
     stop() {
         clearInterval(this.sequencerFrameId);
