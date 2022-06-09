@@ -61,34 +61,35 @@
             <div id="playerapp">
                 <button @click="togglePlay()" class="hue-rotate">{{ playing ? "Pause" : "Play" }}</button>
                 <input type="number" @input="setBpm" v-model="bpm" />
-
-                <table>
-                    <tr class="row" v-for="row in channels" :key="row" :data-step="currentTick % row.steps.length"
-                        :data-playing="playing">
-                        <td>
-                            <select v-model="row.sample">
-                                <optgroup label="Bassdrums">
-                                    <option v-for="sel in selection.bassdrum">{{ sel }}</option>
-                                </optgroup>
-                                <optgroup label="Snares">
-                                    <option v-for="sel in selection.snares">{{ sel }}</option>
-                                </optgroup>
-                                <optgroup label="Closed Hat">
-                                    <option v-for="sel in selection.chat">{{ sel }}</option>
-                                </optgroup>
-                                <optgroup label="Open Hat">
-                                    <option v-for="sel in selection.ohat">{{ sel }}</option>
-                                </optgroup>
-                                <optgroup label="Synth">
-                                    <option v-for="sel in selection.synth">{{ sel }}</option>
-                                </optgroup>
-                            </select>
-                        </td>
-                        <td class="step hue-rotate" v-for="(step, index) in row.steps" :key="step">
-                            <input type="checkbox" v-model="row.steps[index]" />
-                        </td>
-                    </tr>
-                </table>
+                <div class="overflow">
+                    <table>
+                        <tr class="row" v-for="row in channels" :key="row" :data-step="currentTick % row.steps.length"
+                            :data-playing="playing">
+                            <td>
+                                <select v-model="row.sample">
+                                    <optgroup label="Bassdrums">
+                                        <option v-for="sel in selection.bassdrum">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Snares">
+                                        <option v-for="sel in selection.snares">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Closed Hat">
+                                        <option v-for="sel in selection.chat">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Open Hat">
+                                        <option v-for="sel in selection.ohat">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Synth">
+                                        <option v-for="sel in selection.synth">{{ sel }}</option>
+                                    </optgroup>
+                                </select>
+                            </td>
+                            <td class="step hue-rotate" v-for="(step, index) in row.steps" :key="step">
+                                <input type="checkbox" v-model="row.steps[index]" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
                 <button @click="addChannel()" class="hue-rotate">+</button>
             </div>
         </section>

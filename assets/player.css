@@ -1,7 +1,7 @@
 #playerapp table {
-    display: flex;
+    /* display: flex; */
     /* width: 100%; */
-    justify-content: center;
+    /* justify-content: center; */
 }
 
 tr td:nth-child(4n + 2) {

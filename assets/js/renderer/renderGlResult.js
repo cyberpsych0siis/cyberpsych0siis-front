@@ -110,7 +110,7 @@ function draw(gl, dots, mode = gl.POINTS) {
 
 function drawShapes(gl, shapesArray) {
     for (const shape of shapesArray) {
-        draw(gl, shape, gl.TRIANGLE_FAN);
+        draw(gl, shape, gl.POINTS);
     }
 }
 
@@ -131,9 +131,9 @@ export default (gl, dots, connections) => {
             // console.log(x, y);
             // debugger;
 
-            // positions.push(x, y, (r - 2) / 10);
+            positions.push(x, y, (r - 2) / 10);
 
-            positions.push(createCircle(0.01, 0.01, x, y));
+            // positions.push(createCircle(0.01, 0.01, x, y));
         }
 
         // debugger;
@@ -141,8 +141,8 @@ export default (gl, dots, connections) => {
         const g = [];
         // for (const 
 
-        drawShapes(gl, positions);
-        // draw(gl, positions, gl.TRIANGLE_FAN);
+        // drawShapes(gl, positions);
+        draw(gl, positions, gl.POINTS);
 
         // debugger;
 

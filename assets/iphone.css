@@ -41,4 +41,8 @@ and (max-device-width : 812px)
     .show-on-mobile {
         display: block !important;
     }
+
+    .hidebetter {
+        display: none;
+    }
 }
