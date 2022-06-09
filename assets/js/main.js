@@ -3,6 +3,7 @@ import TechnoPlayer, { getCurrentData } from './components/technoplayer.js';
 import MouseHandler from './handler/mouseHandler.js';
 import renderGlResult from './renderer/renderGlResult.js';
 import renderResult from './renderer/render2dResult.js';
+import { generateLines } from './workers/worker.js';
 
 function typerEffect(ch, elem) {
     return new Promise((res, rej) => {
@@ -45,7 +46,7 @@ window.addEventListener("load", () => {
         dots.push(new Dot(i, x, y));
     }
 
-    (async function() {
+    (async function () {
         const title_ = document.querySelector("#pagetitle");
         const ptitle = new URL(location.href).hostname;
 
@@ -54,65 +55,16 @@ window.addEventListener("load", () => {
         }
     })();
 
-    if (window.Worker) {
-        MouseHandler(dots);
+    animLoop(context, dots);
 
-        const mapper = new Worker("assets/js/workers/worker.js");
-
-        const callback = (ts) => {
-            // setCSS(ts);
-            setTimeout(() => {
-
-                // console.log(Sequencer.getCurrentData().buffer[0]);
-                // console.log(getCurrentData());
-
-                mapper.postMessage({
-                    action: "processConnections",
-                    dots: dots.map(e => { return e.serialize(ts, window.innerWidth, window.innerHeight); })
-                });
-            }, 10);
-        }
-
-        mapper.onmessage = (e) => {
-            //render result
-            if (METHOD == "2d") {
-                renderResult(context, e.data.dots, e.data.conn).then(e => {
-                    requestAnimationFrame(callback);
-                });
-            } else if (METHOD == "webgl") {
-                if (context === null) {
-                    alert("Unable to initialize WebGL. Your browser or machine may not support it.");
-                    return;
-                } else {
-                    renderGlResult(context, e.data.dots, e.data.conn).then(e => {
-                        requestAnimationFrame(callback);
-                    });
-                }
-            }
-        }
-
-        requestAnimationFrame(callback);
-    } else {
-        console.error("Workers are not supported");
-        const fallbackCallback = (ts) => {
-            const d = dots.map(e => {
-                return e.serialize(0, window.innerWidth, window.innerHeight);
-            });
-
-            renderResult(context, d);
-
-            requestAnimationFrame(fallbackCallback);
-        }
-
-        requestAnimationFrame(fallbackCallback);
-    }
+    MouseHandler(dots);
 
     const { createApp } = Vue;
 
     const playerApp = createApp(TechnoPlayer);
 
     // playerApp.use(store());
-    
+
     playerApp.mount('#playerapp');
 
     hljs.highlightAll()
@@ -130,4 +82,40 @@ function setCSS(ts) {
 
 export function getCSSVariable(v) {
     return getComputedStyle(document.body).getPropertyValue(v).trim();
+}
+
+function animLoop(context, dots) {
+    //const mapper = new Worker("assets/js/workers/worker.js");
+
+    let lastRun = 0;
+
+    console.log(context);
+
+    //render result
+    const callbackLocal = async (ts) => {
+
+        const delta = ts - lastRun;
+        if (delta > parseInt(minimalRedrawTime())) {
+            if (context instanceof CanvasRenderingContext2D) {
+                let dotsSerial = dots.map(e => { return e.serialize(ts, window.innerWidth, window.innerHeight); })
+                let lines = generateLines(dotsSerial);
+
+                await renderResult(context, dotsSerial, lines);
+            } else if (context instanceof WebGL2RenderingContext) {
+                let dotsSerial = dots.map(e => { return e.serialize(ts, 100, 100); })
+                let lines = generateLines(dotsSerial);
+
+                await renderGlResult(context, dotsSerial, lines);
+            }
+
+            lastRun = ts;
+        }
+        requestAnimationFrame(callbackLocal);
+    }
+
+    requestAnimationFrame(callbackLocal);
+}
+function minimalRedrawTime() {
+    const targetFPS = 30;
+    return (1000 / 60) * (60 / targetFPS) - (1000 / 60) * 0.5;
 }

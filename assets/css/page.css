@@ -245,7 +245,7 @@ li[data-icon='docker']:not(.nohover) {
 }
 
 li[data-icon='docker']::before {
-    background-image: url('techs/docker.svg');
+    background-image: url('../techs/docker.svg');
 }
 
 li[data-icon='typescript']:hover:not(.nohover) {
@@ -257,7 +257,7 @@ li[data-icon='typescript']:not(.nohover)  {
 }
 
 li[data-icon='typescript']::before {
-    background-image: url('techs/typescript.png');
+    background-image: url('../techs/typescript.png');
 }
 
 li[data-icon='swift']:hover:not(.nohover) {
@@ -269,7 +269,7 @@ li[data-icon='swift']:not(.nohover)  {
 }
 
 li[data-icon='swift']::before {
-    background-image: url('techs/swift.svg');
+    background-image: url('../techs/swift.svg');
 }
 
 li[data-icon='swiftui']:hover:not(.nohover) {
@@ -281,7 +281,7 @@ li[data-icon='swiftui']:not(.nohover)  {
 }
 
 li[data-icon='swiftui']::before {
-    background-image: url('techs/swiftui.png');
+    background-image: url('../techs/swiftui.png');
 }
 
 li[data-icon='sqlite']:hover:not(.nohover) {
@@ -293,7 +293,7 @@ li[data-icon='sqlite']:not(.nohover)  {
 }
 
 li[data-icon='sqlite']::before {
-    background-image: url('techs/sqlite.png');
+    background-image: url('../techs/sqlite.png');
 }
 
 li[data-icon='nodejs']:hover:not(.nohover) {
@@ -305,7 +305,7 @@ li[data-icon='nodejs']:not(.nohover) {
 }
 
 li[data-icon='nodejs']::before {
-    background-image: url('techs/nodejs.svg');
+    background-image: url('../techs/nodejs.svg');
 }
 
 li[data-icon='mysql']:hover:not(.nohover) {
@@ -317,7 +317,7 @@ li[data-icon='mysql']:not(.nohover) {
 }
 
 li[data-icon='mysql']::before {
-    background-image: url('techs/mysql.svg');
+    background-image: url('../techs/mysql.svg');
 }
 
 li[data-icon="php"]:hover:not(.nohover) {
@@ -329,7 +329,7 @@ li[data-icon="php"]:not(.nohover)  {
 }
 
 li[data-icon='php']::before {
-    background-image: url('techs/php.svg');
+    background-image: url('../techs/php.svg');
 }
 
 li[data-icon='java']:hover:not(.nohover) {
@@ -341,7 +341,7 @@ li[data-icon='java']:not(.nohover)  {
 }
 
 li[data-icon='java']::before {
-    background-image: url('techs/java.svg');
+    background-image: url('../techs/java.svg');
 }
 
 li[data-icon='javascript']:hover:not(.nohover) {
@@ -355,7 +355,7 @@ li[data-icon='javascript']:not(.nohover)  {
 }
 
 li[data-icon='javascript']::before {
-    background-image: url('techs/javascript.svg');
+    background-image: url('../techs/javascript.svg');
 }
 
 li[data-icon='archlinux']:hover:not(.nohover) {
@@ -367,7 +367,7 @@ li[data-icon='archlinux']:not(.nohover)  {
 }
 
 li[data-icon='archlinux']::before {
-    background-image: url('techs/arch.png');
+    background-image: url('../techs/arch.png');
 }
 
 li[data-icon='arduino']:hover:not(.nohover) {
@@ -379,11 +379,11 @@ li[data-icon='arduino']:not(.nohover)  {
 }
 
 li[data-icon='arduino']::before {
-    background-image: url('techs/arduino.svg');
+    background-image: url('../techs/arduino.svg');
 }
 
 li[data-icon='github']::before {
-    background-image: url('img/github.svg');
+    background-image: url('../img/github.svg');
 }
 
 li[data-icon='html5']:hover:not(.nohover) {
@@ -395,7 +395,7 @@ li[data-icon='html5']:not(.nohover)  {
 }
 
 li[data-icon='html5']::before {
-    background-image: url('techs/html5.png');
+    background-image: url('../techs/html5.png');
 }
 
 li[data-icon='css3']:hover:not(.nohover) {
@@ -407,7 +407,7 @@ li[data-icon='css3']:not(.nohover)  {
 }
 
 li[data-icon='css3']::before {
-    background-image: url('techs/css3.svg');
+    background-image: url('../techs/css3.svg');
 }
 
 .nohover {

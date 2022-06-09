@@ -54,7 +54,7 @@ function createCircle(scaleW = 1, scaleH = 1, offsetX = 0, offsetY = 0, offsetZ 
         // console.log(finalX, finalY);
         // debugger;
 
-        a.push(finalX, finalY);
+        a.push(finalX, finalY, 1.0);
     }
     // console.log(a);
     // debugger;
@@ -85,7 +85,7 @@ function draw(gl, dots, mode = gl.POINTS) {
     var coord = gl.getAttribLocation(shaderProgram, "coordinates");
 
     // Point an attribute to the currently bound VBO
-    gl.vertexAttribPointer(coord, 2, gl.FLOAT, false, 0, 0);
+    gl.vertexAttribPointer(coord, 3, gl.FLOAT, false, 0, 0);
 
     // Enable the attribute
     gl.enableVertexAttribArray(coord);
@@ -93,7 +93,7 @@ function draw(gl, dots, mode = gl.POINTS) {
     /*============= Drawing the primitive ===============*/
 
     // Clear the canvas
-    // gl.clearColor(0.0, 0.0, 0.0, 1.0);
+    gl.clearColor(0.0, 0.0, 0.0, 1.0);
 
     // Enable the depth test
     gl.enable(gl.DEPTH_TEST);
@@ -108,25 +108,14 @@ function draw(gl, dots, mode = gl.POINTS) {
     gl.drawArrays(mode, 0, dots.length);
 }
 
-function drawShapes(gl, shapesArray) {
-    for (const shape of shapesArray) {
-        draw(gl, shape, gl.POINTS);
-    }
-}
-
 export default (gl, dots, connections) => {
     return new Promise((res, rej) => {
-        // console.log(gl);
-
-
-
-
         // Pass the vertex data to the buffer
         const positions = [];
         for (let d of dots) {
             let { x, y, r } = d;
-            x = (x / window.innerWidth);
-            y = (y / window.innerHeight);
+            x = (x / 100);
+            y = (y / 100);
 
             // console.log(x, y);
             // debugger;
@@ -142,19 +131,7 @@ export default (gl, dots, connections) => {
         // for (const 
 
         // drawShapes(gl, positions);
-        draw(gl, positions, gl.POINTS);
-
-        // debugger;
-
-        // console.log(positions);
-
-
-
-        // Unbind the buffer
-
-
-
-
+        draw(gl, createCircle(0.1, 0.1), gl.POINTS);
 
 
 
