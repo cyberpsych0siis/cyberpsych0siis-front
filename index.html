@@ -32,7 +32,6 @@
             f.classList.add("hide");
 
             document.body.style.overflow = "hidden";
-            //movement = true;
         }
     </script>
 </head>
@@ -54,10 +53,10 @@
 
     </div>
 
-    <div class="content hide">
-        <div id="app">
+    <div class="content">
+        <div id="player">
             <button @click="addChannel()">+</button>
-            <button @click="play()">Play</button>
+            <button @click="togglePlay()">{{ playing ? "Pause" : "Play" }}</button>
             <input type="number" @input="setBpm" v-model="bpm" />
 
             <table>
@@ -66,6 +65,18 @@
                         <select v-model="row.sample">
                             <optgroup label="Bassdrums">
                                 <option v-for="sel in selection.bassdrum">{{ sel }}</option>
+                            </optgroup>
+                            <optgroup label="Snares">
+                                <option v-for="sel in selection.snares">{{ sel }}</option>
+                            </optgroup>
+                            <optgroup label="Closed Hat">
+                                <option v-for="sel in selection.chat">{{ sel }}</option>
+                            </optgroup>
+                            <optgroup label="Open Hat">
+                                <option v-for="sel in selection.ohat">{{ sel }}</option>
+                            </optgroup>
+                            <optgroup label="Synth">
+                                <option v-for="sel in selection.synth">{{ sel }}</option>
                             </optgroup>
                         </select>
                     </td>

@@ -49,7 +49,6 @@ window.addEventListener("load", () => {
 
         for (const c of ptitle) {
             await typerEffect(c, title_);
-            console.log("--- tick ---");
         }
     })();
 
@@ -91,7 +90,7 @@ window.addEventListener("load", () => {
 
         const { createApp } = Vue;
 
-        createApp(TechnoPlayer).mount('#app')
+        createApp(TechnoPlayer).mount('#player')
 
         requestAnimationFrame(callback);
     } else {

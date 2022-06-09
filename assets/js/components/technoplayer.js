@@ -5,12 +5,31 @@ export default {
             channels: [],
             sequencer: null,
             bpm: 120,
+            playing: false,
             selection: {
                 bassdrum: [
-                    "sample.wav",
-                    "sample1.wav",
-                    "sample2.wav",
-                    "sample3.wav"
+                    "kicks/sample1.wav",
+                    "kicks/sample2.wav",
+                    "kicks/sample3.wav"
+                ],
+                snares: [
+                    "snares/snare1.wav"
+                ],
+                chat: [
+                    "c_hats/chat1.wav",
+                    "c_hats/chat2.wav",
+                    "c_hats/chat3.wav"
+                ],
+                ohat: [
+                    "o_hat/ohat1.wav",
+                    "o_hat/ohat2.wav",
+                    "o_hat/ohat3.wav"
+                ],
+                synth: [
+                    "synth/syn1.wav",
+                    "synth/syn2.wav",
+                    "synth/syn3.wav",
+                    "synth/syn4.wav"
                 ]
             }
         }
@@ -40,16 +59,27 @@ export default {
         log(data) {
             console.log(data);
         },
-        play() {
-            /*             this.sequencer.postMessage({
-                            "action": "play",
-                            "data": JSON.stringify(this.channels)
-                        }); */
-            if (this.sequencer === null) {
-                this.sequencer = new Sequencer();
+        togglePlay() {
+            if (this.playing) {
+                this.pause();
+            } else {
+                this.play();
             }
+        },
+        play() {
+            this.playing = true;
+            if (this.sequencer === null) {
+                var AudioContext = window.AudioContext || window.webkitAudioContext;
+                var audioCtx = new AudioContext();
+                this.audioCtx = audioCtx;
+                this.sequencer = new Sequencer(audioCtx);
+            }
+            this.audioCtx.resume();
             this.sequencer.play(this.channels);
-            // this.sequencer.togglePlay();
+        },
+        pause() {
+            this.playing = false;
+            this.sequencer.stop();
         },
         setBpm() {
             this.sequencer.setBpm(this.bpm);
@@ -57,24 +87,32 @@ export default {
     }
 }
 
-class Sequencer {
+class Sequencer extends EventTarget {
 
-    constructor() {
-        var AudioContext = window.AudioContext || window.webkitAudioContext;
-        var audioCtx = new AudioContext();
+    sequencerFrameId = -1;
+    bpm = 120;
 
-        // const oscillator = audioCtx.createOscillator();
+    currentTick = 0;
 
-        // const gain = audioCtx.createGain();
-        // gain.value = 0.4;
-        // oscillator.connect(gain);
-        // gain.connect(audioCtx.destination);
+    constructor(audioCtx) {
+        super();
+
+        this.analyser = audioCtx.createAnalyser();
+
+        this.analyser.connect(audioCtx.destination);
 
         this.audioCtx = audioCtx;
         // oscillator.start();
     }
     setBpm(bpm) {
         this.bpm = bpm;
+    }
+
+    getCurrentData() {
+        let array = new Uint8Array(1);
+
+        this.analyser.getByteTimeDomainData(array);
+        return array;
     }
 
     async play(data) {
@@ -87,38 +125,86 @@ class Sequencer {
             console.log(aBuffer);
             this.patterns.push(new SRow(this.audioCtx, aBuffer, d, this));
         }
-        this.togglePlay();
+        this.startSequencer();
+    }
+    stop() {
+        clearInterval(this.sequencerFrameId);
+        this.dispatchEvent(new Event("stop"))
+        this.currentTick = 0;
     }
 
+    tick() {
+        this.patterns.forEach((e) => {
+            //console.log("tick", this.currentTick);
+            if (e.getStep(this.currentTick)) {
+                e.playSample();
+            }
+        })
+        this.currentTick++;
+    }
 
-    togglePlay() {
-        this.patterns.forEach(e => {
-            console.log(e);
-            e.connectTo(this.audioCtx.destination);
-            e.play();
-        });
-        this.audioCtx.resume();
+    startSequencer() {
+        let start = -1;
+        let flankeOld = false;
+
+        const loop = (ts = Date.now()) => {
+            if (start  == -1) {
+                start = ts;
+            }
+
+            const delta = ts - start;
+            const sixteenth = 30000 / this.bpm;
+
+            const flanke = (delta % sixteenth) / sixteenth > 0.5;
+
+            if (flankeOld !== flanke) {
+                this.dispatchEvent(new Event("tick", this.getCurrentData()));
+/*                 console.log(this.getCurrentData()); */
+                this.tick(this.getCurrentData());
+                flankeOld = flanke;
+            }
+            /* this.sequencerFrameId = setTimeout(loop, 10); */
+        }
+
+        this.sequencerFrameId = setInterval(loop, 1);
     }
 }
 
 class SRow {
+    currentStep = 0;
     constructor(ctx, sample, steps, seq) {
-        this.sample = ctx.createBufferSource();
-        this.sample.buffer = sample;
+        /* this.sample = ctx.createBufferSource(); */
+        this.sample = sample;
+
+        this.ctx = ctx;
 
         this.pattern = steps;
         this.parentSequencer = seq;
-
         console.log(this);
     }
 
-    getPattern(step) {
-        return this.pattern[step];
+    playLoop() {
+            console.log(this.pattern.steps[this.currentStep % this.pattern.steps.length]);
+            if (this.pattern.steps[this.currentStep % this.pattern.steps.length]) {
+                this.playSample();
+            }
+            this.currentStep++;
+        
     }
 
-    play() {
-        this.sample.start();
+    getStep(step) {
+        return this.pattern.steps[step % this.pattern.steps.length];
     }
+
+    playSample() {
+        const sample = this.ctx.createBufferSource();
+        sample.buffer = this.sample;
+        sample.connect(this.parentSequencer.analyser);
+        sample.start();
+    }
+    /* stop() {
+        this.parentSequencer.removeEventListener("tick", this.playLoop.bind(this))
+    } */
     connectTo(dest) {
         this.sample.connect(dest);
     }
