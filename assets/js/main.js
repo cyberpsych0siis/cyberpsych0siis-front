@@ -13,7 +13,9 @@ function typerEffect(ch, elem) {
 }
 
 window.addEventListener("load", () => {
-    const METHOD = "2d";
+    let params = new URLSearchParams(location.search);
+    console.log(params.get("usegl"));
+    const METHOD = params.get("usegl") != null ? "webgl" : "2d";
 
     const canvas = document.querySelector("#bganim");
     let context = null;
