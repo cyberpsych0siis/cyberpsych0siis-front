@@ -1,44 +1,4 @@
-function vertexShader(gl) {
-    // vertex shader source code
-    var vertCode =
-        `attribute vec3 coordinates;
 
-        void main(void) {
-          gl_Position = vec4(coordinates, 1.0);
-        gl_PointSize = 10.0;
-        }`;
-
-    // Create a vertex shader object
-    var vertShader = gl.createShader(gl.VERTEX_SHADER);
-
-    // Attach vertex shader source code
-    gl.shaderSource(vertShader, vertCode);
-
-
-    // Compile the vertex shader
-    gl.compileShader(vertShader);
-
-    return vertShader;
-}
-
-function fragmentShader(gl) {
-    // fragment shader source code
-    var fragCode =
-        `void main(void) {
-         gl_FragColor = vec4(1.0, 0.0, 1.0, 1.0);
-        }`;
-
-    // Create fragment shader object
-    var fragShader = gl.createShader(gl.FRAGMENT_SHADER);
-
-    // Attach fragment shader source code
-    gl.shaderSource(fragShader, fragCode);
-
-    // Compile the fragmentt shader
-    gl.compileShader(fragShader);
-
-    return fragShader;
-}
 
 function createCircle(scaleW = 1, scaleH = 1, offsetX = 0, offsetY = 0, offsetZ = 0) {
     let a = [];
@@ -70,10 +30,7 @@ function draw(gl, dots, mode = gl.POINTS) {
     /*=========================Shaders========================*/
     // Create a shader program object to store
     // the combined shader program
-    var shaderProgram = gl.createProgram();
-    gl.attachShader(shaderProgram, vertexShader(gl));
-    gl.attachShader(shaderProgram, fragmentShader(gl));
-    gl.linkProgram(shaderProgram);
+
     gl.useProgram(shaderProgram);
 
     /*======== Associating shaders to buffer objects ========*/
