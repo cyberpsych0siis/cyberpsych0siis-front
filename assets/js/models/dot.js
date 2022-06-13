@@ -29,7 +29,6 @@ export class Dot {
 
     getX(ts, w = 1) {
         return (Math[this.xMode](this.seed + ts / this.xSinMod) * this.r) + ((this.x / 100) * w);
-        // return (Math[this.xMode](this.seed + ts / this.xSinMod) - 0.5) * 2;
     }
 
     getY(ts, h = 1) {

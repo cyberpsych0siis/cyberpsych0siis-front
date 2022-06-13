@@ -50,7 +50,6 @@ export default {
             var audioCtx = new AudioContext();
             this.audioCtx = audioCtx;
             sequencer = new Sequencer(audioCtx, this.bpm);
-            sequencer.addMixer(new Mixer());
             this.sequencer = sequencer;
             this.sequencer.addEventListener("tick", () => {
                 this.currentTick++;
@@ -107,12 +106,7 @@ export default {
             this.sequencer.setBpm(this.bpm);
         },
         openMixer() {
-            let fenster = window.open("mixer.html", "fenster1", "width=600,height=400,status=yes,scrollbars=yes,resizable=yes");
-            window.addEventListener("callback", (ev) => {
-                console.log("did it work?");
-            })
-            console.log(fenster);
-            debugger;
+            fenster = window.open("mixer.html", "fenster1", "width=600,height=400,status=yes,scrollbars=yes,resizable=yes");
             fenster.focus();
         },
         exportStep() {
@@ -198,12 +192,6 @@ export class Sequencer extends EventTarget {
         this.currentTick++;
     }
 
-    addMixer(mixer) {
-        mixer.addEventListener("mixer", (e) => {
-            console.log("Mixer event", e);
-        });
-    }
-
     startSequencer() {
         let start = -1;
         let flankeOld = false;
@@ -228,13 +216,6 @@ export class Sequencer extends EventTarget {
         }
 
         this.sequencerFrameId = setInterval(loop, 1);
-    }
-}
-
-class Mixer extends EventTarget {
-    popupWindow = null;
-    constructor() {
-
     }
 }
 

@@ -9,11 +9,17 @@ function typerEffect(ch, elem) {
     return new Promise((res, rej) => {
         elem.dataset.text += ch;
         elem.innerText += ch;
-        setTimeout(res, 100);
+        setTimeout(res, 50);
     });
 }
 
 window.addEventListener("load", () => {
+
+    document.querySelectorAll(".no-js").forEach((v) => {
+        console.log(v);
+        v.classList.remove("no-js");
+    });
+
     let params = new URLSearchParams(location.search);
     console.log(params.get("usegl"));
     const METHOD = params.get("usegl") != null ? "webgl" : "2d";
@@ -48,11 +54,14 @@ window.addEventListener("load", () => {
 
     (async function () {
         const title_ = document.querySelector("#pagetitle");
-        const ptitle = new URL(location.href).hostname;
+        //const ptitle = new URL(location.href).hostname;
+        const ptitle = "./a_cyberdelic_dream";
 
         for (const c of ptitle) {
             await typerEffect(c, title_);
         }
+
+        unhideAnimation();
     })();
 
     animLoop(context, dots);
@@ -69,6 +78,10 @@ window.addEventListener("load", () => {
 
     hljs.highlightAll()
 });
+
+function unhideAnimation() {
+    document.querySelector("#bganim").classList.remove("opacity-hide");
+}
 
 function setCSS(ts) {
     document.querySelectorAll(".hue-rotate").forEach(e => {

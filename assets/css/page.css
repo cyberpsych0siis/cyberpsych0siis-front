@@ -33,7 +33,7 @@ h1 {
 }
 
 body {
-    background-color: var(--background-color);
+    background-color: var(--background-color-full);
     color: var(--foreground-color);
 }
 
@@ -60,7 +60,16 @@ body {
 
 #bganim {
     position: fixed;
-    z-index: -999;
+    /* z-index: -999; */
+    transition: opacity .5s linear;
+}
+
+.static-backdrop {
+    left: 0;
+    top: 0;
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
 }
 
 .card {
@@ -442,4 +451,34 @@ video {
 .grid-parent>* {
     padding: 10px;
     /* border-radius: 10px; */
+}
+
+#shade {
+    position: fixed;
+    background-color: var(--background-color-full);
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2;
+}
+
+#pagetitle {
+    z-index: 4 !important;
+}
+
+.opacity-hide {
+    opacity: 0;
+}
+
+.no-js {
+    display: none !important;
+}
+
+.floating {
+    z-index: 3;
+    background-color: var(--background-color);
+    position: sticky;
+    width: 15vw;
+    display: inline;
 }
