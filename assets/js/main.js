@@ -55,7 +55,7 @@ window.addEventListener("load", () => {
     (async function () {
         const title_ = document.querySelector("#pagetitle");
         //const ptitle = new URL(location.href).hostname;
-        const ptitle = "./rillo5000";
+        const ptitle = "cyberpsych0si.is";
 
         for (const c of ptitle) {
             await typerEffect(c, title_);
@@ -94,7 +94,8 @@ function setCSS(ts) {
 }
 
 export function getCSSVariable(v) {
-    return getComputedStyle(document.body).getPropertyValue(v).trim();
+    const s = getComputedStyle(document.body).getPropertyValue(v).trim();
+    return s;
 }
 
 function animLoop(context, dots) {

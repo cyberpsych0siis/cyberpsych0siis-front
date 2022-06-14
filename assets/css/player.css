@@ -108,9 +108,3 @@ table {
   }
   .sample { grid-area: sample; }
   .stepgrid { grid-area: stepgrid; }
-
-.small {
-    width: 40vw !important;
-    left: 30vw !important;
-    right: 30vw !important;
-}

@@ -37,7 +37,7 @@ export class Dot {
     }
 
     getColor(ts) {
-        const alpha = (this.getRadius(ts) / this.r);
+        //const alpha = (this.getRadius(ts) / this.r);
 /*         return this.selected ?
             "blue"
             : "rgb(" + parseInt(alpha * 255) + ",0,0)"; */

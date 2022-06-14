@@ -1,19 +1,3 @@
-addEventListener('message', event => {
-    // switch (event.data.action) {
-    // case "processConnections":
-
-
-    
-/*     setTimeout(() => {
-        
-        postMessage(
-            {
-                dots: event.data.dots,
-                conn: generateLines(event.data.dots)
-            });
-    }, 10); */
-});
-
 export function generateLines(dots) {
     const connections = [];
     for (let i = 0; i < dots.length; i++) {

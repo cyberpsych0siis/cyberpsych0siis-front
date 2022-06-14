@@ -50,12 +50,8 @@
                 <h1 class="glitch hue-rotate" id="pagetitle" data-text="./rillo5000">./rillo5000</h1>
             </noscript>
             <h1 class="glitch hue-rotate" id="pagetitle" data-text=""></h1>
-            <p><span>Hellow :3</span></p>
-            <span>
-                <a href="https://fediring.net/previous?host=rillo5000.com">←</a>
-                <a href="https://fediring.net/">Fediring</a>
-                <a href="https://fediring.net/next?host=rillo5000.com">→</a>
-            </span>
+
+
 
 <!--             <p class="no-js">
                 <small onclick="hideOverlay()">Hide Overlay</small>
@@ -67,8 +63,8 @@
         <section id="start">
             <nav>
                 <a href="#aboutme">About Me</a>
-                <a href="#technologies">Technologies</a>
-                <a href="#projects">Projects</a>
+                <a href="#techs">Technologies</a>
+                <a href="#proj">Projects</a>
                 <a href="#music">Music</a>
             </nav>
         </section>
@@ -78,54 +74,10 @@
         </section>
     </div>
 
-    <div class="content no-js">
-        <section id="player">
-            <div id="playerapp">
-                <button @click="togglePlay()" class="hue-rotate">{{ playing ? "Pause" : "Play" }}</button>
-                <button @click="openMixer()" class="hue-rotate">Mixer</button>
-                <button @click="exportStep()" class="hue-rotate">Export</button>
-                <button @click="importStep()" class="hue-rotate">Import</button>
-                <input type="number" class="right" @input="setBpm" v-model="bpm" />
-                <div class="overflow">
-                    <table>
-                        <tr class="row" v-for="row in channels" :key="row" :data-step="currentTick % row.steps.length"
-                            :data-playing="playing">
-                            <td>
-                                <select v-model="row.sample">
-                                    <optgroup label="Bassdrums">
-                                        <option v-for="sel in selection.bassdrum">{{ sel }}</option>
-                                    </optgroup>
-                                    <optgroup label="Snares">
-                                        <option v-for="sel in selection.snares">{{ sel }}</option>
-                                    </optgroup>
-                                    <optgroup label="Closed Hat">
-                                        <option v-for="sel in selection.chat">{{ sel }}</option>
-                                    </optgroup>
-                                    <optgroup label="Open Hat">
-                                        <option v-for="sel in selection.ohat">{{ sel }}</option>
-                                    </optgroup>
-                                    <optgroup label="Synth">
-                                        <option v-for="sel in selection.synth">{{ sel }}</option>
-                                    </optgroup>
-                                    <optgroup label="Bass">
-                                        <option v-for="sel in selection.bass">{{ sel }}</option>
-                                    </optgroup>
-                                </select>
-                            </td>
-                            <td class="step hue-rotate" v-for="(step, index) in row.steps" :key="step">
-                                <input type="checkbox" v-model="row.steps[index]" />
-                            </td>
-                        </tr>
-                    </table>
-                </div>
-                <button @click="addChannel()" class="hue-rotate">+</button>
-            </div>
-        </section>
-    </div>
-
     <div class="content">
-        <section id="aboutme">
+        <section>
 
+            <a name="aboutme"></a>
             <h1 class="hue-rotate">About me</h1>
 
             <div class="center-container">
@@ -156,6 +108,7 @@
 
     <div class="content">
         <section id="technologies">
+            <a name="techs"></a>
             <h1 class="hue-rotate">Technologies</h1>
         </section>
     </div>
@@ -245,6 +198,7 @@
 
     <div class="content">
         <section id="projects">
+            <a name="proj"></a>
             <h1 class="hue-rotate">Projects</h1>
         </section>
     </div>
@@ -546,7 +500,8 @@ function hb(size = 0, useMiB = false) {
         </section>
     </div>
     <div class="content">
-        <section id="music">
+        <section>
+            <a name="music"></a>
             <h1 class="hue-rotate">Music</h1>
             <p>When I am not working you might spot me behind some turntables in the area. I also DJ for a collective
                 called DiROL and I play Hardtechno, Schranz and fast Techno 160bpm+ and I do this for 3 years now</p>
@@ -574,6 +529,53 @@ function hb(size = 0, useMiB = false) {
     </section>
     </div>
 
+    <div class="content no-js hide-on-mobile">
+        <section id="player">
+            <h1>Step Sequencer</h1>
+            <p>Press Play to play the sequence. Click the Checkboxes where you want to set your step. Press + to add a new Track.</p>
+            <div id="playerapp">
+                <button @click="togglePlay()" class="hue-rotate">{{ playing ? "Pause" : "Play" }}</button>
+                <button @click="openMixer()" class="hue-rotate">Mixer</button>
+                <button @click="exportStep()" class="hue-rotate">Export</button>
+                <button @click="importStep()" class="hue-rotate">Import</button>
+                <input type="number" class="right" @input="setBpm" v-model="bpm" />
+                <div class="overflow">
+                    <table>
+                        <tr class="row" v-for="row in channels" :key="row" :data-step="currentTick % row.steps.length"
+                            :data-playing="playing">
+                            <td>
+                                <select v-model="row.sample">
+                                    <optgroup label="Bassdrums">
+                                        <option v-for="sel in selection.bassdrum">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Snares">
+                                        <option v-for="sel in selection.snares">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Closed Hat">
+                                        <option v-for="sel in selection.chat">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Open Hat">
+                                        <option v-for="sel in selection.ohat">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Synth">
+                                        <option v-for="sel in selection.synth">{{ sel }}</option>
+                                    </optgroup>
+                                    <optgroup label="Bass">
+                                        <option v-for="sel in selection.bass">{{ sel }}</option>
+                                    </optgroup>
+                                </select>
+                            </td>
+                            <td class="step hue-rotate" v-for="(step, index) in row.steps" :key="step">
+                                <input type="checkbox" v-model="row.steps[index]" />
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <button @click="addChannel()" class="hue-rotate">+</button>
+            </div>
+        </section>
+    </div>
+
     <div class="content">
         <section class="nopad" id="mixcloud">
             <iframe width="100%" height="120" loading="lazy"
@@ -588,6 +590,8 @@ function hb(size = 0, useMiB = false) {
             <p>
                 Send me a message on Instagram: @djprismflux
             </p>
+
+            <a href="#">To the top</a>
         </section>
     </div>
 

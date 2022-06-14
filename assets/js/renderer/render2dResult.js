@@ -2,7 +2,7 @@ import { getCSSVariable } from "../main.js";
 
 export default (context, dots, connections) => {
     return new Promise((res, rej) => {
-        context.fillStyle = getCSSVariable("--background-color");
+        context.fillStyle = getCSSVariable("--background-color-full");
         context.fillRect(0, 0, window.innerWidth, window.innerHeight);
 
         // console.log(Sequencer.getCurrentData());
@@ -18,7 +18,10 @@ export default (context, dots, connections) => {
             const from = dots[c.from];
             const to = dots[c.to];
 
-            context.strokeStyle = createGradientForConnection(context, from, to);
+            console.log(from);
+
+            /* context.strokeStyle = createGradientForConnection(context, from, to); */
+            context.strokeStyle = from.c;
             context.beginPath();
             context.moveTo(from.x, from.y);
             context.lineTo(to.x, to.y);
