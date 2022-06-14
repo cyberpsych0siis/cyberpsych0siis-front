@@ -1,4 +1,5 @@
 import { getCurrentData } from "../components/technoplayer.js";
+import { getCSSVariable } from "../main.js";
 export class Dot {
     selected = false;
 
@@ -37,9 +38,10 @@ export class Dot {
 
     getColor(ts) {
         const alpha = (this.getRadius(ts) / this.r);
-        return this.selected ?
+/*         return this.selected ?
             "blue"
-            : "rgb(" + parseInt(alpha * 255) + ",0,0)";
+            : "rgb(" + parseInt(alpha * 255) + ",0,0)"; */
+            return getCSSVariable("--accent-color");
     }
 
     serialize(ts, w, h) {

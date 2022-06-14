@@ -55,7 +55,7 @@ window.addEventListener("load", () => {
     (async function () {
         const title_ = document.querySelector("#pagetitle");
         //const ptitle = new URL(location.href).hostname;
-        const ptitle = "./a_cyberdelic_dream";
+        const ptitle = "./rillo5000";
 
         for (const c of ptitle) {
             await typerEffect(c, title_);
