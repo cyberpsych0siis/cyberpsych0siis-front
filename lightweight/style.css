@@ -1,0 +1,17 @@
+body > * {
+    position: relative;
+    width: 40vw;
+    left: 30vw;
+    padding: 1em;
+    margin: 1em;
+    /* background-color: var(--background-color-full); */
+    background-color: var(--color-2);
+    /* right: 30vw; */
+}
+
+body {
+    background-color: var(--color-1);
+    color: var(--text-color);
+    font-family: monospace;
+    margin: 0;
+}
