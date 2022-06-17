@@ -18,8 +18,6 @@ export default (context, dots, connections) => {
             const from = dots[c.from];
             const to = dots[c.to];
 
-            console.log(from);
-
             /* context.strokeStyle = createGradientForConnection(context, from, to); */
             context.strokeStyle = from.c;
             context.beginPath();
