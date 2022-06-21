@@ -12,10 +12,12 @@
   
   @media (prefers-color-scheme: light) {
     :root {
-      --background-color-full: rgba(248, 229, 209, 1);
-      --background-color: rgba(248, 229, 209, 0.5);
-      --foreground-color: rgba(8, 26, 46, 1);
-      --accent-color: #de90b0;
-      --shadow-color: white;
+      --background-color-full: black;
+      --foreground-color: black;
+
+      --color-1: white;
+      --color-2: white;
+      --color-3: white;
+      --text-color: black;
     }
   }
