@@ -1,3 +1,5 @@
+@import url('systemfont.css');
+
 body>* {
     position: relative;
     width: 60vw;
@@ -11,7 +13,8 @@ body>* {
 body {
     background-color: var(--color-1);
     color: var(--text-color);
-    font-family: monospace;
+    /* font-family: monospace; */
+    font-family: 'IBMVGA8', monospace;
     margin: 0;
 }
 
@@ -61,15 +64,25 @@ nav[name="toc"] > * {
 
 /* IPHONE */
 @media only screen
-
-/* and (min-device-width : 375px)  */
 and (max-device-width : 812px) {
     body>* {
-        padding: 1em;
-        margin: 1em;
+        padding: 0em;
+        margin: 0em;
+        margin-bottom: 1em;
+        left: 0;
+        right: 0;
+        width: 100vw;
         /* background-color: var(--background-color-full); */
         background-color: var(--color-2);
-        /* right: 30vw; */
+    }
+    
+    header h1 {
+        display: block;
+    }
+
+    header nav {
+        float: unset;
+        text-align: center;
     }
 }
 

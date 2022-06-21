@@ -1,0 +1,13 @@
+{
+  "name": "vuex",
+  "homepage": "https://github.com/vuejs/vuex",
+  "version": "4.0.2",
+  "_release": "4.0.2",
+  "_resolution": {
+    "type": "version",
+    "tag": "v4.0.2",
+    "commit": "b18718b45777d4f029c7cb7d4ddb1b4c08ea4b9f"
+  },
+  "_source": "https://github.com/vuejs/vuex.git",
+  "_target": "*"
+}
