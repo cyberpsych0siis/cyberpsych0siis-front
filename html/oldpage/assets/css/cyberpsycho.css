@@ -40,7 +40,7 @@ input[type="submit"] {
   background-color: var(--foreground-color);
   border: 0px solid transparent;
   padding: 5px 10px;
-  font-family: 'VT323', monospace;
+  font-family: 'IBMVGA8', 'VT323', monospace;
   font-size: 20px;
 
   -webkit-appearance: none;
@@ -97,7 +97,7 @@ input[type="number"] {
 }
 
 select {
-  font-family: 'VT323', monospace;
+  font-family: 'IBMVGA8', 'VT323', monospace;
   font-family: 20px;
   padding: 5px 10px;
   color: var(--background-color);
